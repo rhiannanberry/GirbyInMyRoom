@@ -7,6 +7,8 @@ public class Interactable : MonoBehaviour {
 
 	public GameObject UIprefab;
 
+	public EventManager em;
+
 	private GameObject bigPanel, rightPanel, leftPanel;
 	private bool triggered = false;
 
@@ -24,7 +26,21 @@ public class Interactable : MonoBehaviour {
 				leftPanel = ui.Find("LeftPanel").gameObject;
 			}
 		}
+
+		em = new EventManager();
+		System.Func<bool> cond = delegate {
+			Debug.Log("CHECKKINGG!!");
+			return true;
+		};
+		System.Func<bool> action = delegate {
+			Debug.Log("WORKING!!!");
+			return true;
+		};
+		InteractableEvent ie = new InteractableEvent(cond, action);
+		em.AddEvent(ie);
+
 		CloseUI();
+		
 	}
 	
 	// Update is called once per frame
@@ -68,6 +84,7 @@ public class Interactable : MonoBehaviour {
 		} else {
 			Debug.Log("INTERACTABLE TRIGGERED");
 			PlayerController.playerController.LockCameraToPoint(bigPanel.transform);
+			em.CheckEvents();
 			rightPanel.SetActive(false);
 			bigPanel.SetActive(true);
 			triggered = true;
