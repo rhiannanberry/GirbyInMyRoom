@@ -17,7 +17,6 @@ public class BallMove : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//Physics.gravity = new Vector3(0, -1, 0);
 		rb = GetComponent<Rigidbody>();
 	}
 	

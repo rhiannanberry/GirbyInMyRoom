@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 0.189
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 432545824}
-  m_IndirectSpecularColor: {r: 0.26532784, g: 0.1694426, b: 0.2822899, a: 0.189}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 0.189}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -381,6 +381,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
+  interactionManager:
+    events:
+    - condition: {fileID: 11400000, guid: 8cf56c97862ed1544aaaff093088c953, type: 2}
+      compCondition: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 1340902578}
+            m_MethodName: TriggerText
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: HIIIIIIIIIIIIIIIII!!!
+              m_BoolArgument: 0
+            m_CallState: 2
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
 --- !u!135 &109673312
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1113,9 +1133,20 @@ Prefab:
       propertyPath: m_AnchoredPosition.y
       value: 2.04
       objectReference: {fileID: 0}
+    - target: {fileID: 114126223344871628, guid: aafbb21f4a7809d469211b6cebdec271,
+        type: 2}
+      propertyPath: text
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &401159832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114126223344871628, guid: aafbb21f4a7809d469211b6cebdec271,
+    type: 2}
+  m_PrefabInternal: {fileID: 358201645}
+  m_Script: {fileID: 11500000, guid: 8a20c851a8e1407499dfe9d0fe70aca8, type: 3}
 --- !u!1 &404483854
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,7 +1839,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 610340848}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: acd5b42a63c00a3459e818ee4291fd2c, type: 3}
   m_Name: 
@@ -1908,6 +1939,7 @@ GameObject:
   - component: {fileID: 623435268}
   - component: {fileID: 623435267}
   - component: {fileID: 623435266}
+  - component: {fileID: 623435269}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1960,6 +1992,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &623435269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 623435265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ef92b2aa003584c99f0dc90542c1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resettableScriptableObjects: []
 --- !u!1001 &685167373
 Prefab:
   m_ObjectHideFlags: 0
@@ -2920,7 +2964,7 @@ Prefab:
         type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: d9e71d77b34698b4694e64472476b50d, type: 2}
+      objectReference: {fileID: 2100000, guid: f8c4d364c58cec94d881f8a545070762, type: 2}
     - target: {fileID: 54620176841219040, guid: e9de9b41fc4251e46bd634d7f7ee233b,
         type: 2}
       propertyPath: m_AngularDrag
@@ -2945,6 +2989,18 @@ Prefab:
         type: 2}
       propertyPath: jumpSpeed
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743553354756782, guid: e9de9b41fc4251e46bd634d7f7ee233b, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743553354756782, guid: e9de9b41fc4251e46bd634d7f7ee233b, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4743553354756782, guid: e9de9b41fc4251e46bd634d7f7ee233b, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9de9b41fc4251e46bd634d7f7ee233b, type: 2}
@@ -3137,6 +3193,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
+  interactionManager:
+    events:
+    - condition: {fileID: 11400000, guid: 8cf56c97862ed1544aaaff093088c953, type: 2}
+      compCondition: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 401159832}
+            m_MethodName: TriggerText
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: Hello!!! Do not be alarmed, but my head is on backwards
+                and I need some help... =_=;;
+              m_BoolArgument: 0
+            m_CallState: 2
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
 --- !u!135 &1279039598
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3484,6 +3561,12 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &1340902578 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114126223344871628, guid: aafbb21f4a7809d469211b6cebdec271,
+    type: 2}
+  m_PrefabInternal: {fileID: 1340902577}
+  m_Script: {fileID: 11500000, guid: 8a20c851a8e1407499dfe9d0fe70aca8, type: 3}
 --- !u!1 &1437755807
 GameObject:
   m_ObjectHideFlags: 0

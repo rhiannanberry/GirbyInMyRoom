@@ -44,8 +44,8 @@ public class CameraMain : MonoBehaviour {
 				resetting = false;
 			}
 		} else if (!locked) {
-			player.Rotate(Vector3.up*Input.GetAxis("Mouse X"));
-			xRot.Rotate(Vector3.right*Input.GetAxis("Mouse Y"));
+			player.Rotate(Vector3.up*1.5f*Input.GetAxis("Mouse X"));
+			xRot.Rotate(Vector3.right*1.5f*Input.GetAxis("Mouse Y"));
 		} else { //locked
 			//Vector3 dir = (point.position - transform.position).normalized;
 			

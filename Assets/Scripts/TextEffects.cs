@@ -29,6 +29,17 @@ public class TextEffects : MonoBehaviour {
 		textIndexPosition = 0;
 		tm.text = "";
 		textLength = text.Length;
+		
+	}
+
+	public void TriggerText(string txt) {
+		text = txt;
+		textIndexPosition = 0;
+		tm.text = "";
+		textLength = text.Length;
+		TriggerText();
+	}
+	public void TriggerText() {
 		InvokeRepeating("UpdateText", 0f, 0.05f);
 	}
 	

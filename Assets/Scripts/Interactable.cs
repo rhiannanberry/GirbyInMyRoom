@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Interactable : MonoBehaviour {
 	public static Interactable inRange;
 
 	public GameObject UIprefab;
 
-	public EventManager em;
+	public InteractionManager interactionManager;
 
 	private GameObject bigPanel, rightPanel, leftPanel;
 	private bool triggered = false;
@@ -26,8 +27,8 @@ public class Interactable : MonoBehaviour {
 				leftPanel = ui.Find("LeftPanel").gameObject;
 			}
 		}
-
-		em = new EventManager();
+		if (interactionManager == null)
+			interactionManager = new InteractionManager();
 		System.Func<bool> cond = delegate {
 			Debug.Log("CHECKKINGG!!");
 			return true;
@@ -36,8 +37,32 @@ public class Interactable : MonoBehaviour {
 			Debug.Log("WORKING!!!");
 			return true;
 		};
-		InteractableEvent ie = new InteractableEvent(cond, action);
+
+		/*InteractableEvent ie = new InteractableEvent(cond, action);
 		em.AddEvent(ie);
+
+		InteractableEvent ie1 = new InteractableEvent(
+			delegate {
+				Debug.Log("WORKING!!!--s1");
+				return true;
+			}, 
+			delegate {
+				Debug.Log("WORKING!!!--s1");
+				return true;
+			});
+
+		InteractableEvent ie2 = new InteractableEvent(
+			delegate {
+				Debug.Log("WORKING!!!--s2");
+				return true;
+			}, 
+			delegate {
+				Debug.Log("WORKING!!!--s2");
+				return true;
+			});
+		em.AddSequentialEvent(ie1, ie2);*/
+
+		
 
 		CloseUI();
 		
@@ -84,7 +109,7 @@ public class Interactable : MonoBehaviour {
 		} else {
 			Debug.Log("INTERACTABLE TRIGGERED");
 			PlayerController.playerController.LockCameraToPoint(bigPanel.transform);
-			em.CheckEvents();
+			interactionManager.CheckEvents();
 			rightPanel.SetActive(false);
 			bigPanel.SetActive(true);
 			triggered = true;
