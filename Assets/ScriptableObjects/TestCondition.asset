@@ -9,8 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee22e3afaed6b5d49837768768724da9, type: 3}
-  m_Name: New Condition
+  m_Name: TestCondition
   m_EditorClassIdentifier: 
-  description: 
+  description: Test FAIL
   satisfied: 0
-  hash: 0

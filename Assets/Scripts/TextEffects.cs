@@ -5,7 +5,7 @@ using TMPro;
 
 public class TextEffects : MonoBehaviour {
 
-	public int typeSpeed = 10;
+	public int typeSpeed = 20;
 	public string text;
 
 	TextMeshProUGUI tm;
@@ -29,7 +29,10 @@ public class TextEffects : MonoBehaviour {
 		textIndexPosition = 0;
 		tm.text = "";
 		textLength = text.Length;
-		
+	}
+
+	public void ChangeTypeSpeed(int speed) {
+		typeSpeed = speed;
 	}
 
 	public void TriggerText(string txt) {
@@ -40,7 +43,7 @@ public class TextEffects : MonoBehaviour {
 		TriggerText();
 	}
 	public void TriggerText() {
-		InvokeRepeating("UpdateText", 0f, 0.05f);
+		InvokeRepeating("UpdateText", 0f, 1.0f/typeSpeed);
 	}
 	
 	// Update is called once per frame

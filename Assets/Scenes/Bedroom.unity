@@ -382,8 +382,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
   interactionManager:
+    sequenceLocation: 0
+    sequentialEvents: []
     events:
-    - condition: {fileID: 11400000, guid: 8cf56c97862ed1544aaaff093088c953, type: 2}
+    - boolCondition: {fileID: 0}
       compCondition: {fileID: 0}
       action:
         m_PersistentCalls:
@@ -396,11 +398,12 @@ MonoBehaviour:
               m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
               m_IntArgument: 0
               m_FloatArgument: 0
-              m_StringArgument: HIIIIIIIIIIIIIIIII!!!
+              m_StringArgument: I'm a special bug who has nothing special to say :(
               m_BoolArgument: 0
             m_CallState: 2
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
+      repeat: 1
 --- !u!135 &109673312
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -3194,12 +3197,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
   interactionManager:
-    events:
-    - condition: {fileID: 11400000, guid: 8cf56c97862ed1544aaaff093088c953, type: 2}
+    sequenceLocation: 0
+    sequentialEvents:
+    - boolCondition: {fileID: 0}
       compCondition: {fileID: 0}
       action:
         m_PersistentCalls:
           m_Calls:
+          - m_Target: {fileID: 401159832}
+            m_MethodName: ChangeTypeSpeed
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 20
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
           - m_Target: {fileID: 401159832}
             m_MethodName: TriggerText
             m_Mode: 5
@@ -3214,6 +3229,73 @@ MonoBehaviour:
             m_CallState: 2
         m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
+    - boolCondition: {fileID: 0}
+      compCondition: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 401159832}
+            m_MethodName: ChangeTypeSpeed
+            m_Mode: 3
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 10
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
+          - m_Target: {fileID: 401159832}
+            m_MethodName: TriggerText
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: JUST CHECKING :)
+              m_BoolArgument: 0
+            m_CallState: 2
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    - boolCondition: {fileID: 11400000, guid: afdb513e26abe5f4d84545ab3e83b28d, type: 2}
+      compCondition: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 401159832}
+            m_MethodName: TriggerText
+            m_Mode: 5
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: AHHHHHHHHHHHHHH
+              m_BoolArgument: 0
+            m_CallState: 2
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+    events:
+    - boolCondition: {fileID: 0}
+      compCondition: {fileID: 0}
+      action:
+        m_PersistentCalls:
+          m_Calls:
+          - m_Target: {fileID: 2115548469}
+            m_MethodName: SetActive
+            m_Mode: 6
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 1
+            m_CallState: 2
+        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+          Culture=neutral, PublicKeyToken=null
+      repeat: 0
 --- !u!135 &1279039598
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5237,6 +5319,11 @@ Transform:
   m_Father: {fileID: 517403710}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &2115548469 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1886458674809272, guid: aafbb21f4a7809d469211b6cebdec271,
+    type: 2}
+  m_PrefabInternal: {fileID: 358201645}
 --- !u!1 &2146625058
 GameObject:
   m_ObjectHideFlags: 0

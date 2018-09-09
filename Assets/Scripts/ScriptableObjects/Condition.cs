@@ -2,13 +2,11 @@ using UnityEngine;
 
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "Condition", menuName = "Conditions/Condition", order = 1)]
-public class Condition : ScriptableObject
+public abstract class Condition : ScriptableObject
 {
     public string description;
-    public bool satisfied;
+    public bool conditionToMatch;
+    public bool currentCondition;
 
-    public bool IsSatisfied() {
-        return satisfied;
-    }
+    abstract public bool IsSatisfied();
 }

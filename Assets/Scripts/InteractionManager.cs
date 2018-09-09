@@ -6,17 +6,20 @@ using UnityEngine.Events;
 
 [System.Serializable]
 public class InteractionManager {
-	public Queue<InteractableEvent> sequentialEvents;
-	public List<Interaction> events;
+
+	[SerializeField]
+	private int sequenceLocation = 0;
+	public List<Interaction> sequentialEvents;
+	public List<InteractionNonSequenced> events;
 
 	public InteractionManager() {
-		sequentialEvents = new Queue<InteractableEvent>();
-		events = new List<Interaction>();
+		sequentialEvents = new List<Interaction>();
+		events = new List<InteractionNonSequenced>();
 	}
 
-	public void AddSequentialEvent(params InteractableEvent[] es) {
-		foreach(InteractableEvent e in es) {
-			sequentialEvents.Enqueue(e);
+	public void AddSequentialEvent(params Interaction[] es) {
+		foreach(Interaction e in es) {
+			sequentialEvents.Add(e);
 		}
 	}
 	public void AddSequentialEvent(Func<bool> condition, Func<bool> action) {
@@ -24,7 +27,7 @@ public class InteractionManager {
 	}
 
 	public void AddEvent(params Interaction[] es) {
-		foreach(Interaction e in es) {
+		foreach(InteractionNonSequenced e in es) {
 			events.Add(e);
 		}
 	}
@@ -33,8 +36,10 @@ public class InteractionManager {
 	}
 
 	public void CheckSequential() {
-		if(sequentialEvents.Count > 0 && sequentialEvents.Peek().CheckEvent()) {
-			sequentialEvents.Dequeue();
+		if(sequentialEvents.Count > 0 && sequenceLocation < sequentialEvents.Count) {
+			if (sequentialEvents[sequenceLocation].CheckAndReact()) {
+				sequenceLocation++;
+			}
 		}
 	}
 
@@ -56,19 +61,3 @@ public class InteractionManager {
 		CheckNonsequential();
 	}
 }
-
-
-[System.Serializable]
-public class InteractableEvent {
-	public ScriptableObject condition;
-
-	public UnityEvent action;
-	public InteractableEvent(ScriptableObject condition, UnityEvent action) {
-		this.condition = condition;
-		this.action = action;
-	}
-	public bool CheckEvent() {
-		return true;//(condition.Invoke()) ? action.Invoke() : false;
-	}
-}
-
