@@ -8,6 +8,8 @@ public class Interactable : MonoBehaviour {
 
 	public GameObject UIprefab;
 
+	public bool collisionBasedTrigger = true;
+
 	public InteractionManager interactionManager;
 
 	private GameObject bigPanel, rightPanel, leftPanel;
@@ -29,39 +31,6 @@ public class Interactable : MonoBehaviour {
 		}
 		if (interactionManager == null)
 			interactionManager = new InteractionManager();
-		System.Func<bool> cond = delegate {
-			Debug.Log("CHECKKINGG!!");
-			return true;
-		};
-		System.Func<bool> action = delegate {
-			Debug.Log("WORKING!!!");
-			return true;
-		};
-
-		/*InteractableEvent ie = new InteractableEvent(cond, action);
-		em.AddEvent(ie);
-
-		InteractableEvent ie1 = new InteractableEvent(
-			delegate {
-				Debug.Log("WORKING!!!--s1");
-				return true;
-			}, 
-			delegate {
-				Debug.Log("WORKING!!!--s1");
-				return true;
-			});
-
-		InteractableEvent ie2 = new InteractableEvent(
-			delegate {
-				Debug.Log("WORKING!!!--s2");
-				return true;
-			}, 
-			delegate {
-				Debug.Log("WORKING!!!--s2");
-				return true;
-			});
-		em.AddSequentialEvent(ie1, ie2);*/
-
 		
 
 		CloseUI();
@@ -79,14 +48,18 @@ public class Interactable : MonoBehaviour {
 		if (other.CompareTag("Player")) {
 			Debug.Log("In range!!");
 			inRange = transform.GetComponent<Interactable>();
-			rightPanel.SetActive(true);
+			if (ui != null)
+				rightPanel.SetActive(true);
+			if (collisionBasedTrigger)
+				TriggerInteractable();
 		}
 	}
 
 	void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Player") && inRange == transform.GetComponent<Interactable>()) {
-			rightPanel.SetActive(false);
+			if (ui != null)
+				rightPanel.SetActive(false);
 
 			inRange = null;
 		}
@@ -108,10 +81,12 @@ public class Interactable : MonoBehaviour {
 			triggered = false;
 		} else {
 			Debug.Log("INTERACTABLE TRIGGERED");
-			PlayerController.playerController.LockCameraToPoint(bigPanel.transform);
 			interactionManager.CheckEvents();
-			rightPanel.SetActive(false);
-			bigPanel.SetActive(true);
+			if (ui != null) {
+				PlayerController.playerController.LockCameraToPoint(bigPanel.transform);
+				rightPanel.SetActive(false);
+				bigPanel.SetActive(true);
+			}
 			triggered = true;
 		}
 	}

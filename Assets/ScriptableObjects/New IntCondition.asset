@@ -11,8 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a404bf37cc9954e8f5c2625c0739ab, type: 3}
   m_Name: New IntCondition
   m_EditorClassIdentifier: 
-  description: 
+  description: LadybugCubes
   conditionToMatch: 1
   currentCondition: 0
-  matchTo: 30
-  currentValue: 5
+  matchTo: 1
+  currentValue: 0

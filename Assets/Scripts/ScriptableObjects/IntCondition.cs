@@ -11,4 +11,8 @@ public class IntCondition : Condition
         currentCondition = (matchTo == currentValue);
         return currentCondition==conditionToMatch;
     }
+
+    public void AddToCurrent(int value) {
+        currentValue += value;
+    }
 }
