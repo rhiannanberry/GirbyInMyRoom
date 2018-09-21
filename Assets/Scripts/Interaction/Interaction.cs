@@ -8,30 +8,22 @@ using UnityEngine.Events;
 public class Interaction {
 
 	[SerializeField]
-	public BoolCondition boolCondition;
-
-	public IntCondition compCondition;
+	public Condition conditionObject;
 
 	public UnityEvent action;
 
 
 	public bool CheckAndReact() {
-		bool condNotNull = (boolCondition != null);
-		bool compNotNull = (compCondition != null);
-		bool condResult = !condNotNull;
-		bool compResult = !compNotNull;
-		if (!compNotNull && !condNotNull) {
+		bool condResult = true;
+		if (conditionObject == null) {
 			Debug.Log("This interaction doesn't contain any condition, so it will trigger successful. ");
 		} else {
-			if (condNotNull) {
-				condResult = boolCondition.IsSatisfied();
-			}
-			if (compNotNull) {
-				compResult = compCondition.IsSatisfied();
-			}
+			
+			condResult = conditionObject.ConditionMet;
+			
 		}
 
-		if (condResult && compResult) {
+		if (condResult) {
 			action.Invoke();
 			return true;
 		}
@@ -46,24 +38,14 @@ public class InteractionNonSequenced : Interaction {
 	private int timesRepeated = 0;
 
 	new public bool CheckAndReact() {
-		bool condNotNull = (boolCondition != null);
-		bool compNotNull = (compCondition != null);
-		bool condResult = !condNotNull;
-		bool compResult = !compNotNull;
-		if (!compNotNull && !condNotNull) {
+		bool condResult = true;
+		if (conditionObject == null) {
 			Debug.Log("This interaction doesn't contain any condition, so it will trigger successful. ");
 		} else {
-			if (condNotNull) {
-				condResult = boolCondition.IsSatisfied();
-			}
-			if (compNotNull) {
-				compResult = compCondition.IsSatisfied();
-			}
+			condResult = conditionObject.ConditionMet;
 		}
 
-		Debug.Log(condResult);
-
-		if (condResult && compResult && (repeat || (timesRepeated<1))) {
+		if (condResult && (repeat || (timesRepeated<1))) {
 			action.Invoke();
 			timesRepeated++;
 			return true;

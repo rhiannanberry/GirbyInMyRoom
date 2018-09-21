@@ -6,10 +6,9 @@ public class Bug : Interactable {
 	// Use this for initialization
 	private bool inDialogue = false;
 
-	new public bool collisionBasedTrigger = false;
-
 	new void Start () {
 		base.Start();
+		base.collisionBasedTrigger = false;
 	}
 	
 	// Update is called once per frame
