@@ -22,17 +22,17 @@ public class InteractionManager {
 			sequentialEvents.Add(e);
 		}
 	}
-	public void AddSequentialEvent(Func<bool> condition, Func<bool> action) {
-		//AddSequentialEvent(new InteractableEvent(condition, action));
+	public void AddSequentialEvent(Condition condition, UnityEvent action) {
+		AddSequentialEvent(new Interaction(condition, action));
 	}
 
-	public void AddEvent(params Interaction[] es) {
+	public void AddEvent(params InteractionNonSequenced[] es) {
 		foreach(InteractionNonSequenced e in es) {
 			events.Add(e);
 		}
 	}
-	public void AddEvent(Func<bool> condition, Func<bool> action) {
-		//AddEvent(new InteractableEvent(condition, action));
+	public void AddEvent(Condition condition, UnityEvent action) {
+		AddEvent(new InteractionNonSequenced(condition, action));
 	}
 
 	public void CheckSequential() {

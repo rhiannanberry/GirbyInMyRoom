@@ -6,9 +6,7 @@ using UnityEngine.Events;
 public class Interactable : MonoBehaviour {
 	public static Interactable inRange;
 
-	public GameObject UIprefab;
-
-	public bool collisionBasedTrigger = true;
+	protected bool collisionBasedTrigger = true;
 
 	public InteractionManager interactionManager;
 
@@ -21,13 +19,15 @@ public class Interactable : MonoBehaviour {
 	public void Start () {
 		Debug.Log("START");
 		if (transform.childCount > 0) {
-			ui = transform.Find(UIprefab.name);
+			ui = transform.GetChild(0);
 			if ( ui != null ) {
 				ui.gameObject.SetActive(true);
 				bigPanel = ui.Find("BigPanel").gameObject;
 				rightPanel = ui.Find("RightPanel").gameObject;
 				leftPanel = ui.Find("LeftPanel").gameObject;
 			}
+		} else {
+			Debug.Log("This interactable does not contain a UIPrefab.");
 		}
 		if (interactionManager == null)
 			interactionManager = new InteractionManager();

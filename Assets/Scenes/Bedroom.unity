@@ -380,8 +380,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18086a876ae52b4589b73b021412b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
-  collisionBasedTrigger: 0
   interactionManager:
     sequenceLocation: 0
     sequentialEvents: []
@@ -589,11 +587,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 16410a3694559834fb4a81dd2d4d6eb6,
     type: 3}
   m_PrefabInternal: {fileID: 1294667791}
---- !u!1 &195926150 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271,
-    type: 2}
-  m_PrefabInternal: {fileID: 1155037326}
 --- !u!1 &198060381
 GameObject:
   m_ObjectHideFlags: 0
@@ -3058,44 +3051,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1024230474}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf88b57c2a95f1e419e8508bdfef151b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e42bc48f1a34e4881dea2b9d7a9728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 0}
-  collisionBasedTrigger: 1
   interactionManager:
     sequenceLocation: 0
     sequentialEvents: []
-    events:
-    - conditionObject: {fileID: 0}
-      action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 11400000, guid: d0a299d8d3672204f89b10525861f903, type: 2}
-            m_MethodName: AddToCurrent
-            m_Mode: 3
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1024230474}
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      repeat: 0
+    events: []
 --- !u!4 &1026375209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7eb424803c7edfc49bccfc40bdddf5ea,
@@ -3262,8 +3224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18086a876ae52b4589b73b021412b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 195926150}
-  collisionBasedTrigger: 0
   interactionManager:
     sequenceLocation: 0
     sequentialEvents:
@@ -3479,44 +3439,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1150499029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf88b57c2a95f1e419e8508bdfef151b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e42bc48f1a34e4881dea2b9d7a9728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 0}
-  collisionBasedTrigger: 1
   interactionManager:
     sequenceLocation: 0
     sequentialEvents: []
-    events:
-    - conditionObject: {fileID: 0}
-      action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 11400000, guid: d0a299d8d3672204f89b10525861f903, type: 2}
-            m_MethodName: AddToCurrent
-            m_Mode: 3
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1150499029}
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      repeat: 0
+    events: []
 --- !u!1001 &1155037326
 Prefab:
   m_ObjectHideFlags: 0
@@ -3945,8 +3874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18086a876ae52b4589b73b021412b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
-  collisionBasedTrigger: 0
   interactionManager:
     sequenceLocation: 0
     sequentialEvents:
@@ -4567,44 +4494,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1449491388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf88b57c2a95f1e419e8508bdfef151b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e42bc48f1a34e4881dea2b9d7a9728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 0}
-  collisionBasedTrigger: 1
   interactionManager:
     sequenceLocation: 0
     sequentialEvents: []
-    events:
-    - conditionObject: {fileID: 0}
-      action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 11400000, guid: ae22539b9c10454428bb3fad3ee259c9, type: 2}
-            m_MethodName: AddToCurrent
-            m_Mode: 3
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1449491388}
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      repeat: 0
+    events: []
 --- !u!65 &1449491391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5745,44 +5641,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1827911084}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf88b57c2a95f1e419e8508bdfef151b, type: 3}
+  m_Script: {fileID: 11500000, guid: 35e42bc48f1a34e4881dea2b9d7a9728, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 0}
-  collisionBasedTrigger: 1
   interactionManager:
     sequenceLocation: 0
     sequentialEvents: []
-    events:
-    - conditionObject: {fileID: 0}
-      action:
-        m_PersistentCalls:
-          m_Calls:
-          - m_Target: {fileID: 11400000, guid: d0a299d8d3672204f89b10525861f903, type: 2}
-            m_MethodName: AddToCurrent
-            m_Mode: 3
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 1
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-          - m_Target: {fileID: 1827911084}
-            m_MethodName: SetActive
-            m_Mode: 6
-            m_Arguments:
-              m_ObjectArgument: {fileID: 0}
-              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-              m_IntArgument: 0
-              m_FloatArgument: 0
-              m_StringArgument: 
-              m_BoolArgument: 0
-            m_CallState: 2
-        m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
-      repeat: 0
+    events: []
 --- !u!1001 &1871906796
 Prefab:
   m_ObjectHideFlags: 0

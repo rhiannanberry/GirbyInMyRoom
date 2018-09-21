@@ -12,6 +12,15 @@ public class Interaction {
 
 	public UnityEvent action;
 
+	public Interaction() {
+		this.conditionObject = null;
+		this.action = null;
+	}
+	public Interaction(Condition condition, UnityEvent action) {
+		this.conditionObject = condition;
+		this.action = action;
+	}
+
 
 	public bool CheckAndReact() {
 		bool condResult = true;
@@ -37,12 +46,17 @@ public class InteractionNonSequenced : Interaction {
 	public bool repeat = true;
 	private int timesRepeated = 0;
 
+	public InteractionNonSequenced(Condition condition, UnityEvent action) {
+		base.conditionObject = condition;
+		base.action = action;
+	}
+
 	new public bool CheckAndReact() {
 		bool condResult = true;
-		if (conditionObject == null) {
+		if (base.conditionObject == null) {
 			Debug.Log("This interaction doesn't contain any condition, so it will trigger successful. ");
 		} else {
-			condResult = conditionObject.ConditionMet;
+			condResult = base.conditionObject.ConditionMet;
 		}
 
 		if (condResult && (repeat || (timesRepeated<1))) {
