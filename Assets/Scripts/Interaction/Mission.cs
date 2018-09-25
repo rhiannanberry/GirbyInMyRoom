@@ -6,11 +6,12 @@ using System.Linq;
 public class Mission : Condition {
 
 	private List<Transform> items;
-
-	[SerializeField]
 	private int itemsCount;
 
 
+	public int ItemsCount {
+		get { return itemsCount; }
+	}
 
 	// Use this for initialization
 	void Start () {

@@ -37,7 +37,13 @@ public class BallMove : MonoBehaviour {
 		} else if (!falling) {
 			rb.drag = (movement == Vector3.zero ) ? stopDrag : 0;
 			rb.AddForce(movement*speed);
-		}	
+		}
+
+		if (rb.velocity.magnitude >= 2.5 && !falling) {
+			rb.velocity = rb.velocity.normalized * 2.5f;
+		}
+
+		Debug.Log(rb.velocity);
 
 		positionDummy.position = transform.position;
 	}
