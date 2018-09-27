@@ -43,8 +43,6 @@ public class BallMove : MonoBehaviour {
 			rb.velocity = rb.velocity.normalized * 2.5f;
 		}
 
-		Debug.Log(rb.velocity);
-
 		positionDummy.position = transform.position;
 	}
 

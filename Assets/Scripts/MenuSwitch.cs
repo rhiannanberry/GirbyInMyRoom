@@ -59,7 +59,7 @@ public class MenuSwitch : MonoBehaviour {
 			currentTransform.anchoredPosition = currentPos;
 			*/
 			currentTime += Time.deltaTime;
-			currentDist = EaseInOut(currentTime, 0, dist, duration);
+			currentDist = AnimationUtilities.EaseInOut(currentTime, 0, dist, duration);
 			if (currentDist >= dist) {
 				rt.anchoredPosition = containerSourcePosition + containerPathVector;
 			} else {
@@ -70,31 +70,7 @@ public class MenuSwitch : MonoBehaviour {
 		
 		currentMenuTransform = destination.GetComponent<RectTransform>();
 	}
-	float EaseIn(float time, float startValue, float totalDistance, float duration) {
-		time /= duration;
-		return totalDistance*time*time + startValue;
-	}
-
-	float EaseOut(float time, float startValue, float totalDistance, float duration) {
-		time /= duration;
-		return (-totalDistance)*time*(time-2) + startValue;
-	}
-
-	float EaseInOut(float time, float startValue, float totalDistance, float duration) {
-		time /= (duration/2);
-		if (time < 1) {
-			return (totalDistance/2)*time*time + startValue;
-		}
-
-		time--;
-		return (-totalDistance/2)*(time*(time-2) - 1) + startValue;
-	}
-
-	//time and duration are in sec
-	//
-	float LinearTween(float time, float startValue, float totalDistance, float duration) {
-		return totalDistance*time/duration + startValue;
-	}
+	
 
 
 }

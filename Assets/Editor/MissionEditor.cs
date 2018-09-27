@@ -9,7 +9,7 @@ public class MissionEditor : Editor
     {
         Mission myTarget = (Mission)target;
 
-        //myTarget.ConditionMet = EditorGUILayout.IntField("Experience", myTarget.experience);
+        myTarget.missionIcon = (Sprite)EditorGUILayout.ObjectField("Mission Icon", myTarget.missionIcon, typeof(Sprite));
         
         EditorGUILayout.LabelField("Condition Met: ", myTarget.ConditionMet ? "true" : "false");
         EditorGUILayout.LabelField("Items Count: ", (myTarget.ItemsCount).ToString());
