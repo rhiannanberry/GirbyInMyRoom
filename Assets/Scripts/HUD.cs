@@ -14,17 +14,19 @@ public static class HUDActions {
 	}
 }
 
-
 public class HUD : MonoBehaviour {
 
 	public RectTransform missionPanel;
 	TextMeshProUGUI missionItemCount;
+	Vector2 missionPanelStartPosition;
 	Image missionSprite;
 
+	private List<IEnumerator> missionPanelCoroutines = new List<IEnumerator>();
 	// Use this for initialization
 	void Start () {
 		missionItemCount = missionPanel.GetComponentInChildren<TextMeshProUGUI>();
 		missionSprite = missionPanel.Find("ItemImage/Mask/Image").GetComponent<Image>();
+		missionPanelStartPosition = missionPanel.anchoredPosition;
 	}
 	
 	// Update is called once per frame
@@ -32,25 +34,42 @@ public class HUD : MonoBehaviour {
 		if (HUDActions.updateMission) {
 			missionItemCount.text = HUDActions.mission.ToString();
 			missionSprite.sprite = HUDActions.mission.missionIcon;
-			StartCoroutine(MoveMissionPanel(new Vector2(0, 100), 0.4f, 2f, 0.3f));
+			if (missionPanelCoroutines.Count > 0) {
+				foreach (IEnumerator cor in missionPanelCoroutines) {
+					StopCoroutine(cor);
+				}
+				missionPanelCoroutines.Clear();
+			}
+			IEnumerator mainCor = MoveMissionPanel(new Vector2(0, 100), .5f, 2f, .5f);
+			StartCoroutine(mainCor);
+			missionPanelCoroutines.Add(mainCor);
+
 			HUDActions.updateMission = false;
 		}
 	}
 
 	IEnumerator MoveMissionPanel(Vector2 delta, float inTime, float holdTime, float outTime) {
+		Vector2 deltaOffset =  missionPanel.anchoredPosition - missionPanelStartPosition;
+		Vector2 newDelta = delta - deltaOffset;
+		
+		float newInTime = (newDelta.magnitude/delta.magnitude)*inTime;
+
+		Debug.Log("deltaOffset: " + deltaOffset + " newDelta: " + newDelta + " newInTime: " + newInTime);
+		IEnumerator showPanel = AnimationUtilities.MoveUI(missionPanel, newDelta, newInTime, AnimationUtilities.CurveType.EaseOut);
+		IEnumerator hidePanel = AnimationUtilities.MoveUI(missionPanel, -delta, outTime, AnimationUtilities.CurveType.EaseIn);
+		missionPanelCoroutines.Add(showPanel);
+
 		//show panel
-		yield return StartCoroutine(AnimationUtilities.MoveUI(missionPanel, delta, inTime, AnimationUtilities.CurveType.EaseOut));
+		yield return StartCoroutine(showPanel);
+		missionPanel.anchoredPosition = missionPanelStartPosition + delta;
 		
 		//hold panel
 		yield return new WaitForSeconds(holdTime);
-		
+
+		missionPanelCoroutines.Add(hidePanel);
 		//hide panel
-		yield return StartCoroutine(AnimationUtilities.MoveUI(missionPanel, -delta, outTime, AnimationUtilities.CurveType.EaseIn));
+		yield return StartCoroutine(hidePanel);
+		missionPanel.anchoredPosition = missionPanelStartPosition;
 
-	}
-
-	float EaseOut(float time, float startValue, float totalDistance, float duration) {
-		time /= duration;
-		return (-totalDistance)*time*(time-2) + startValue;
 	}
 }

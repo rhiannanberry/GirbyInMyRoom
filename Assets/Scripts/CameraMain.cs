@@ -9,10 +9,12 @@ public class CameraMain : MonoBehaviour {
 
 	public Transform girbyModel;
 
+	public float cameraLockTime = 0.3f;
+
 	private Vector3 offset, newCamPos, origCamPos, startLookPoint;
 	private float distance;
 
-	private bool locked = false, resetting = false;
+	private bool locked = false;
 	private Transform point;
 	private Quaternion origCamRot;
 	void Start () {
@@ -43,7 +45,7 @@ public class CameraMain : MonoBehaviour {
 	}
 
 
-	public void SetCamera(Transform point) {
+	public void LockCameraInFrontOfPoint(Transform point) {
 		locked = true;
 		this.point = point;
 
@@ -66,19 +68,15 @@ public class CameraMain : MonoBehaviour {
 		float distance = Vector3.Distance(transform.position, newCameraPosition);
 		//float rotDistance = Quaternion.LookRotation
 		
-		StartCoroutine(AnimationUtilities.MoveTo3D(transform, newCameraPosition, 0.5f));
-		StartCoroutine(AnimationUtilities.RotateTo3D(transform, endLookRot, 0.5f));
+		SetCameraPositionRotation(newCameraPosition, endLookRot);
 	}
 
-	void ResetCamera() {			
-		StartCoroutine(AnimationUtilities.MoveTo3D(transform, origCamPos, 0.5f));
-		StartCoroutine(AnimationUtilities.RotateTo3D(transform, origCamRot, 0.5f));		
+	public void UnlockCamera() {	
+		SetCameraPositionRotation(origCamPos, origCamRot);			
 	}
 
-	public void UnlockCamera() {
-		//locked = false;
-		ResetCamera();
-		resetting = true;
+	private void SetCameraPositionRotation(Vector3 newCameraPosition, Quaternion newRotation) {
+		StartCoroutine(AnimationUtilities.MoveTo3D(transform, newCameraPosition, cameraLockTime));
+		StartCoroutine(AnimationUtilities.RotateTo3D(transform, newRotation, cameraLockTime));	
 	}
-
 }
