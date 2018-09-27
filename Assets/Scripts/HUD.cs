@@ -32,29 +32,21 @@ public class HUD : MonoBehaviour {
 		if (HUDActions.updateMission) {
 			missionItemCount.text = HUDActions.mission.ToString();
 			missionSprite.sprite = HUDActions.mission.missionIcon;
-			StartCoroutine(AnimationUtilities.MoveUI(missionPanel, new Vector2(-125, -120), new Vector2(0, 100), 0.5f, AnimationUtilities.CurveType.EaseOut));
+			StartCoroutine(MoveMissionPanel(new Vector2(0, 100), 0.4f, 2f, 0.3f));
 			HUDActions.updateMission = false;
 		}
 	}
 
-	IEnumerator MoveHUDPanel(RectTransform rect, Vector2 delta) {
-		float dist = delta.magnitude;
-		Vector2 dir = delta.normalized;
-		rect.anchoredPosition+=new Vector2(0, -100);
-		Vector2 startPos = rect.anchoredPosition;
-		float currentTime = 0.0f;
-		float currentDist = 0.0f;
-		float duration = 0.5f;
-		while( currentTime <= duration) {
-			currentTime += Time.deltaTime;
-			currentDist = EaseOut(currentTime, 0, dist, duration);
-			if (currentDist >= dist) {
-				rect.anchoredPosition = startPos + dist*dir;
-			} else {
-				rect.anchoredPosition = startPos + currentDist*dir;
-			}
-			yield return new WaitForFixedUpdate();
-		}
+	IEnumerator MoveMissionPanel(Vector2 delta, float inTime, float holdTime, float outTime) {
+		//show panel
+		yield return StartCoroutine(AnimationUtilities.MoveUI(missionPanel, delta, inTime, AnimationUtilities.CurveType.EaseOut));
+		
+		//hold panel
+		yield return new WaitForSeconds(holdTime);
+		
+		//hide panel
+		yield return StartCoroutine(AnimationUtilities.MoveUI(missionPanel, -delta, outTime, AnimationUtilities.CurveType.EaseIn));
+
 	}
 
 	float EaseOut(float time, float startValue, float totalDistance, float duration) {

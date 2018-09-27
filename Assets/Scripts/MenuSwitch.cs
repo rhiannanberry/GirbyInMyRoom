@@ -43,34 +43,7 @@ public class MenuSwitch : MonoBehaviour {
 		//that we actually intend on moving, so they must go the opposite direction
 		containerPathVector = currentMenuTransform.anchoredPosition - this.destination.GetComponent<RectTransform>().anchoredPosition;
 		containerSourcePosition = rt.anchoredPosition;
-		StartCoroutine(MenuTransition());
+		StartCoroutine(AnimationUtilities.MoveUI(rt, containerSourcePosition, containerPathVector, duration, AnimationUtilities.CurveType.EaseInOut));
+		currentMenuTransform = this.destination.GetComponent<RectTransform>();
 	}
-
-	IEnumerator MenuTransition() {
-		float dist = containerPathVector.magnitude;
-		Vector2 dir = containerPathVector.normalized;
-		float currentTime = 0.0f;
-		float currentDist = 0.0f;
-		while( currentTime <= duration) {
-			/* CORRECT LINEAR:
-			currentTime += Time.deltaTime;
-			float lerpTime = (currentTime/duration);
-			Vector3 currentPos = Vector2.Lerp(sourcePosition, destinationPosition, lerpTime);
-			currentTransform.anchoredPosition = currentPos;
-			*/
-			currentTime += Time.deltaTime;
-			currentDist = AnimationUtilities.EaseInOut(currentTime, 0, dist, duration);
-			if (currentDist >= dist) {
-				rt.anchoredPosition = containerSourcePosition + containerPathVector;
-			} else {
-				rt.anchoredPosition = containerSourcePosition + currentDist*dir;
-			}
-			yield return new WaitForFixedUpdate();
-		}
-		
-		currentMenuTransform = destination.GetComponent<RectTransform>();
-	}
-	
-
-
 }

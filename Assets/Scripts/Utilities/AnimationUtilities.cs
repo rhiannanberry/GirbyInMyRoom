@@ -5,7 +5,6 @@ using UnityEngine;
 public static class AnimationUtilities {
 	public enum CurveType {EaseIn, EaseOut, EaseInOut, Linear};
 
-
 	public static IEnumerator MoveUITo(RectTransform rect, Vector2 startPosition, Vector2 endPosition, float duration, CurveType type) {
 		Vector2 delta = endPosition - startPosition;
 		float dist = delta.magnitude;
@@ -86,6 +85,46 @@ public static class AnimationUtilities {
 				rect.anchoredPosition = startPos + dist*dir;
 			} else {
 				rect.anchoredPosition = startPos + currentDist*dir;
+			}
+			yield return new WaitForFixedUpdate();
+		}
+	}
+
+	public static IEnumerator MoveTo3D(Transform position, Vector3 newPosition, float duration) {
+		Vector3 delta = newPosition - position.position;
+		float dist = delta.magnitude;
+		Vector3 dir = delta.normalized;
+
+		Vector3 startPos = position.position;
+		float currentTime = 0.0f;
+		float currentDist = 0.0f;
+
+		
+		while( currentTime <= duration) {
+			currentTime += Time.deltaTime;
+			currentDist = SelectCurveType(CurveType.Linear, currentTime, 0, dist, duration);
+			if (currentDist >= dist) {
+				position.position = startPos + dist*dir;
+			} else {
+				position.position = startPos + currentDist*dir;
+			}
+			yield return new WaitForFixedUpdate();
+		}
+	}
+
+	public static IEnumerator RotateTo3D(Transform transform, Quaternion newRotation, float duration) {
+
+		Quaternion startRot = transform.rotation;
+		float currentTime = 0.0f;
+		float currentT = 0.0f;
+		
+		while( currentTime <= duration) {
+			currentTime += Time.deltaTime;
+			currentT = SelectCurveType(CurveType.Linear, currentTime, 0, 1, duration);
+			if (currentT >= 1) {
+				transform.rotation = newRotation;
+			} else {
+				transform.rotation = Quaternion.Slerp(startRot, newRotation, currentT);
 			}
 			yield return new WaitForFixedUpdate();
 		}
