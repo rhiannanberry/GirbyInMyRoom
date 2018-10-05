@@ -29,7 +29,10 @@ public class CameraMain : MonoBehaviour {
 		Cursor.visible = false;
 		if (Input.GetKeyDown(KeyCode.E) && Interactable.inRange != null) {
 			if (Interactable.inRange is Bug) {
-				((Bug)Interactable.inRange).TriggerInteractable();
+                if (Interactable.inRange is Kabuto)
+                    ((Kabuto)Interactable.inRange).TriggerInteractable(); // hacky
+                else
+                    ((Bug)Interactable.inRange).TriggerInteractable();
 			} else {
 				Interactable.inRange.TriggerInteractable();
 
