@@ -16,6 +16,8 @@ public static class HUDActions {
 
 public class HUD : MonoBehaviour {
 
+	public AnimationCurve UIWobble, UISlideIn;
+
 	public RectTransform missionPanel;
 	TextMeshProUGUI missionItemCount;
 	Vector2 missionPanelStartPosition;
@@ -40,9 +42,10 @@ public class HUD : MonoBehaviour {
 				}
 				missionPanelCoroutines.Clear();
 			}
-			IEnumerator mainCor = MoveMissionPanel(new Vector2(0, 100), .5f, 2f, .5f);
+			IEnumerator mainCor = MoveMissionPanel(new Vector2(0, 100), .5f, 2f, .4f);
 			StartCoroutine(mainCor);
 			missionPanelCoroutines.Add(mainCor);
+			//StartCoroutine(AnimationUtilities.ScaleWobble(missionPanel, new Vector2(0.01f, 0.01f), 1.5f, 4));
 
 			HUDActions.updateMission = false;
 		}
@@ -55,13 +58,15 @@ public class HUD : MonoBehaviour {
 		float newInTime = (newDelta.magnitude/delta.magnitude)*inTime;
 
 		Debug.Log("deltaOffset: " + deltaOffset + " newDelta: " + newDelta + " newInTime: " + newInTime);
-		IEnumerator showPanel = AnimationUtilities.MoveUI(missionPanel, newDelta, newInTime, AnimationUtilities.CurveType.EaseOut);
-		IEnumerator hidePanel = AnimationUtilities.MoveUI(missionPanel, -delta, outTime, AnimationUtilities.CurveType.EaseIn);
+		IEnumerator showPanel = AnimationUtilities.MoveUI(missionPanel, newDelta, UISlideIn, newInTime);
+		IEnumerator hidePanel = AnimationUtilities.MoveUI(missionPanel, -delta, UISlideIn, outTime);
 		missionPanelCoroutines.Add(showPanel);
 
 		//show panel
 		yield return StartCoroutine(showPanel);
 		missionPanel.anchoredPosition = missionPanelStartPosition + delta;
+		StartCoroutine(AnimationUtilities.ScaleWobble(missionPanel, new Vector2(-.01f, .02f), UIWobble, holdTime/2));
+
 		
 		//hold panel
 		yield return new WaitForSeconds(holdTime);
@@ -72,4 +77,6 @@ public class HUD : MonoBehaviour {
 		missionPanel.anchoredPosition = missionPanelStartPosition;
 
 	}
+
+	
 }

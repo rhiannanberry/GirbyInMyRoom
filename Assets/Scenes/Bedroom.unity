@@ -665,6 +665,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.1, z: 0}
 --- !u!65 &155753080
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -830,6 +832,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.05, z: 0}
 --- !u!65 &222944894
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1126,6 +1130,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.1, z: 0}
 --- !u!65 &286182034
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2803,6 +2809,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.1, z: 0}
 --- !u!65 &777321584
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3097,7 +3105,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 841455609}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.25, z: -4.59}
+  m_LocalPosition: {x: 0, y: -1.206, z: -4.59}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 1150499028}
@@ -3839,6 +3847,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.05, z: 0}
 --- !u!4 &1026375209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 7eb424803c7edfc49bccfc40bdddf5ea,
@@ -4329,6 +4339,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.05, z: 0}
 --- !u!1001 &1155037326
 Prefab:
   m_ObjectHideFlags: 0
@@ -5534,6 +5546,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.1, z: 0}
 --- !u!65 &1449491391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5671,6 +5685,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.1, z: 0}
 --- !u!65 &1456280270
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6901,6 +6917,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.05, z: 0}
 --- !u!1001 &1871906796
 Prefab:
   m_ObjectHideFlags: 0
@@ -7135,6 +7153,135 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06422e1dcb2513a4cac6794a430e2beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UIWobble:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 9.945652
+      outSlope: 9.945652
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.1
+      value: 0.99456525
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.2
+      value: -0.85
+      inSlope: 0.01126086
+      outSlope: 0.01126086
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.3
+      value: 0.6
+      inSlope: 0.4819145
+      outSlope: 0.4819145
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.4
+      value: -0.4
+      inSlope: -0.38314262
+      outSlope: -0.38314262
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.5
+      value: 0.2
+      inSlope: 0.45335153
+      outSlope: 0.45335153
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.60096943
+      value: -0.15411648
+      inSlope: -0.11983959
+      outSlope: -0.11983959
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.6989277
+      value: 0.097947694
+      inSlope: 0.2895122
+      outSlope: 0.2895122
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.80047846
+      value: -0.06906831
+      inSlope: -0.3301744
+      outSlope: -0.3301744
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.90206826
+      value: -0.017760385
+      inSlope: 0.5088355
+      outSlope: 0.5088355
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.18135473
+      outSlope: 0.18135473
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  UISlideIn:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 2
+      outSlope: 2
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   missionPanel: {fileID: 1628694561}
 --- !u!21 &1889683563
 Material:
@@ -7261,6 +7408,8 @@ MonoBehaviour:
     sequenceLocation: 0
     sequentialEvents: []
     events: []
+  periodLength: 1
+  hoverDelta: {x: 0, y: 0.05, z: 0}
 --- !u!65 &1914689380
 BoxCollider:
   m_ObjectHideFlags: 0

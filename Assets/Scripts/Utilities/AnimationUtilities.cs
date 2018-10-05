@@ -5,6 +5,18 @@ using UnityEngine;
 public static class AnimationUtilities {
 	public enum CurveType {EaseIn, EaseOut, EaseInOut, Linear};
 
+	public static IEnumerator ScaleWobble(RectTransform rect, Vector2 scaleDelta, AnimationCurve animationCurve, float duration) {
+		Vector2 startScale = rect.localScale;
+		float timeDelta = 1.0f/duration;
+		float currentTime = 0;
+		while (currentTime <= duration) {
+			currentTime += Time.deltaTime;
+			float scaleAmount = animationCurve.Evaluate(timeDelta*currentTime);
+			rect.localScale = startScale + scaleDelta*scaleAmount;
+			yield return new WaitForFixedUpdate();
+		}
+	}
+
 	public static IEnumerator MoveUITo(RectTransform rect, Vector2 startPosition, Vector2 endPosition, float duration, CurveType type) {
 		Vector2 delta = endPosition - startPosition;
 		float dist = delta.magnitude;
@@ -50,18 +62,19 @@ public static class AnimationUtilities {
 	/*
 		If you want to move UI from a separate position than it actually starts at.
 	 */
-	public static IEnumerator MoveUI(RectTransform rect, Vector2 startPosition, Vector2 delta, float duration, CurveType type) {
+	public static IEnumerator MoveUI(RectTransform rect, Vector2 startPosition, Vector2 delta, AnimationCurve animationCurve, float duration) {
 		float dist = delta.magnitude;
 		Vector2 dir = delta.normalized;
 		rect.anchoredPosition = startPosition;
 		Vector2 startPos = rect.anchoredPosition;
+		float timeDelta = 1.0f/duration;
 		float currentTime = 0.0f;
 		float currentDist = 0.0f;
 
 		
 		while( currentTime <= duration) {
 			currentTime += Time.deltaTime;
-			currentDist = SelectCurveType(type, currentTime, 0, dist, duration);
+			currentDist = dist*animationCurve.Evaluate(timeDelta * currentTime);
 			if (currentDist >= dist) {
 				rect.anchoredPosition = startPos + dist*dir;
 			} else {
@@ -71,16 +84,17 @@ public static class AnimationUtilities {
 		}
 	}
 
-	public static IEnumerator MoveUI(RectTransform rect, Vector2 delta, float duration, CurveType type) {
+	public static IEnumerator MoveUI(RectTransform rect, Vector2 delta, AnimationCurve animationCurve, float duration) {
 		float dist = delta.magnitude;
 		Vector2 dir = delta.normalized;
 		Vector2 startPos = rect.anchoredPosition;
+		float timeDelta = 1.0f/duration;
 		float currentTime = 0.0f;
 		float currentDist = 0.0f;
 
 		while( currentTime <= duration) {
 			currentTime += Time.deltaTime;
-			currentDist = SelectCurveType(type, currentTime, 0, dist, duration);
+			currentDist = dist*animationCurve.Evaluate(timeDelta * currentTime);
 			if (currentDist >= dist) {
 				rect.anchoredPosition = startPos + dist*dir;
 			} else {

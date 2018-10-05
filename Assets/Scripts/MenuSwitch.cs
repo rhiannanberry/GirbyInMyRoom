@@ -9,6 +9,7 @@ public class MenuSwitch : MonoBehaviour {
 
 	public GameObject main, settings, credits;
 	public float duration = 0.5f;
+	public AnimationCurve menuSwitchCurve;
 
 	GameObject destination;
 	private Vector2 containerPathVector, containerSourcePosition;
@@ -43,7 +44,7 @@ public class MenuSwitch : MonoBehaviour {
 		//that we actually intend on moving, so they must go the opposite direction
 		containerPathVector = currentMenuTransform.anchoredPosition - this.destination.GetComponent<RectTransform>().anchoredPosition;
 		containerSourcePosition = rt.anchoredPosition;
-		StartCoroutine(AnimationUtilities.MoveUI(rt, containerSourcePosition, containerPathVector, duration, AnimationUtilities.CurveType.EaseInOut));
+		StartCoroutine(AnimationUtilities.MoveUI(rt, containerSourcePosition, containerPathVector, menuSwitchCurve, duration));
 		currentMenuTransform = this.destination.GetComponent<RectTransform>();
 	}
 }

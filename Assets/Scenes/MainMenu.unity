@@ -1290,7 +1290,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18086a876ae52b4589b73b021412b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
+  interactionManager:
+    sequenceLocation: 0
+    sequentialEvents: []
+    events: []
 --- !u!135 &139378145
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5874,6 +5877,66 @@ MonoBehaviour:
   settings: {fileID: 668931458}
   credits: {fileID: 565885406}
   duration: 0.3
+  menuSwitchCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.16866827
+      value: 0.0012079328
+      inSlope: -0.0010119549
+      outSlope: -0.0010119549
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.06300113
+    - serializedVersion: 3
+      time: 0.5176039
+      value: 1.0740205
+      inSlope: 0.25857648
+      outSlope: 0.25857648
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.16908337
+      outWeight: 0.10637018
+    - serializedVersion: 3
+      time: 0.6744591
+      value: 0.9673979
+      inSlope: 0.021682484
+      outSlope: 0.021682484
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.13787147
+    - serializedVersion: 3
+      time: 0.82216024
+      value: 1.0134687
+      inSlope: -0.10257726
+      outSlope: -0.10257726
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.28218538
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1384003933
 GameObject:
   m_ObjectHideFlags: 0
@@ -6139,11 +6202,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37335af24173784e9fbed9936adf6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
-  pivot: {fileID: 0}
-  girby: {fileID: 0}
-  rotationForce: 1
-  maxSpeed: 20
 --- !u!114 &1453699318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6155,9 +6213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56478e2b769b72d41a1b8a879d264dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  worldController: {fileID: 0}
-  rotationForce: 0.001
-  maxSpeed: 20
 --- !u!4 &1453699319
 Transform:
   m_ObjectHideFlags: 0
@@ -8196,7 +8251,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a18086a876ae52b4589b73b021412b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIprefab: {fileID: 1650634248066110, guid: aafbb21f4a7809d469211b6cebdec271, type: 2}
+  interactionManager:
+    sequenceLocation: 0
+    sequentialEvents: []
+    events: []
 --- !u!135 &1911647997
 SphereCollider:
   m_ObjectHideFlags: 0
