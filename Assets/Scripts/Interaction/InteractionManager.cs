@@ -36,10 +36,12 @@ public class InteractionManager {
 	}
 
 	public void CheckSequential() {
-		if(sequentialEvents.Count > 0 && sequenceLocation < sequentialEvents.Count) {
-			if (sequentialEvents[sequenceLocation].CheckAndReact()) {
-				sequenceLocation++;
-			}
+		if(sequentialEvents.Count > 0) {
+            if (sequenceLocation == sequentialEvents.Count || !sequentialEvents[sequenceLocation].Check()) {
+                sequenceLocation--;
+            }
+            sequentialEvents[sequenceLocation].React();
+			sequenceLocation++;
 		}
 	}
 
@@ -60,4 +62,9 @@ public class InteractionManager {
 		CheckSequential();
 		CheckNonsequential();
 	}
+
+    public bool IsCurrEventEnd()
+    {
+        return sequenceLocation == sequentialEvents.Count || !sequentialEvents[sequenceLocation].Check();
+    }
 }
