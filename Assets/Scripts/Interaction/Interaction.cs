@@ -21,23 +21,20 @@ public class Interaction {
 		this.action = action;
 	}
 
+    public bool Check()
+    {
+        if (conditionObject == null) {
+            Debug.Log("No condition on interaction");
+            return true;
+        } else {
+            return conditionObject.ConditionMet;
+        }
+        ;
+    }
 
-	public bool CheckAndReact() {
-		bool condResult = true;
-		if (conditionObject == null) {
-			Debug.Log("This interaction doesn't contain any condition, so it will trigger successful. ");
-		} else {
-			
-			condResult = conditionObject.ConditionMet;
-			
-		}
-
-		if (condResult) {
-			action.Invoke();
-			return true;
-		}
-
-		return false;
+	public void React() { 
+		action.Invoke();
+		
 	}
 }
 
