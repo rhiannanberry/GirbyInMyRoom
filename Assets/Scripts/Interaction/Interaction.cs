@@ -29,10 +29,11 @@ public class Interaction {
         } else {
             return conditionObject.ConditionMet;
         }
-        ;
+        
     }
 
-	public void React() { 
+	public void React() {
+        Debug.Log(action.GetType());
 		action.Invoke();
 		
 	}

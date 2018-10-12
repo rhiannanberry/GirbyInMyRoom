@@ -73,18 +73,37 @@ public class Interactable : MonoBehaviour {
 		}
 	}
 
+    //Check if text is finished typing, if not then complete the text
+    private bool CheckTextStatus()
+    {
+        if (!bigPanel.activeInHierarchy)
+        {
+            return false;
+        }
+        if (bigPanel.GetComponentInChildren<TextEffects>().StillTyping())
+        {
+            bigPanel.GetComponentInChildren<TextEffects>().FinishText();
+            return true;
+        }
+        return false;
+    }
+
 	public void TriggerInteractable() {
 		//idk how this is rly gonna work yet
 		if (triggered) {
-            if (interactionManager.IsCurrEventEnd())
+            if (!CheckTextStatus())
             {
-                PlayerController.playerController.UnlockCamera();
-                CloseUI();
-                triggered = false;
-            } else
-            {
-                Debug.Log("INTERACTABLE TRIGGERED");
-                interactionManager.CheckEvents();
+                if (interactionManager.IsCurrEventEnd())
+                {
+                    PlayerController.playerController.UnlockCamera();
+                    CloseUI();
+                    triggered = false;
+                }
+                else
+                {
+                    Debug.Log("INTERACTABLE TRIGGERED");
+                    interactionManager.CheckEvents();
+                }
             }
 		} else {
 			Debug.Log("INTERACTABLE TRIGGERED");
