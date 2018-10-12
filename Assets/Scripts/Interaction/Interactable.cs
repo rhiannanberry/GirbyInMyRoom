@@ -76,9 +76,16 @@ public class Interactable : MonoBehaviour {
 	public void TriggerInteractable() {
 		//idk how this is rly gonna work yet
 		if (triggered) {
-			PlayerController.playerController.UnlockCamera();
-			CloseUI();
-			triggered = false;
+            if (interactionManager.IsCurrEventEnd())
+            {
+                PlayerController.playerController.UnlockCamera();
+                CloseUI();
+                triggered = false;
+            } else
+            {
+                Debug.Log("INTERACTABLE TRIGGERED");
+                interactionManager.CheckEvents();
+            }
 		} else {
 			Debug.Log("INTERACTABLE TRIGGERED");
 			interactionManager.CheckEvents();
