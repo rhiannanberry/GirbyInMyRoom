@@ -19,7 +19,7 @@ public class Interactable : MonoBehaviour {
 	public void Start () {
 		Debug.Log("START");
 		if (transform.childCount > 0) {
-			ui = transform.GetChild(0);
+			ui = transform.Find("WorldUICanvas");
 			if ( ui != null ) {
 				ui.gameObject.SetActive(true);
 				bigPanel = ui.Find("BigPanel").gameObject;
