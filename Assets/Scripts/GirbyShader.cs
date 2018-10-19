@@ -24,12 +24,10 @@ public class GirbyShader : MonoBehaviour {
 		if (ground == null) {
 			ground = c.transform;
 		}
-		Debug.Log("hhhhh");
 	}
 	void OnTriggerExit(Collider c) {
 		if (ground == c.transform) {
 			ground = null;
 		}
-		Debug.Log("hhhhh");
 	}
 }

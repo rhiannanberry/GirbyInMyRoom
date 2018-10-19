@@ -44,6 +44,11 @@ public class BallMove : MonoBehaviour {
 		}
 
 		positionDummy.position = transform.position;
+		/*
+		if (Input.GetKeyDown(KeyCode.E) && Interactable.inRange != null) {
+			Interactable.inRange.TriggerInteractable();;
+		}
+		*/
 	}
 
 	public void LockBallPosition(bool toLock) {
@@ -56,12 +61,12 @@ public class BallMove : MonoBehaviour {
 	}
 
 	public void OnCollisionEnter(Collision col) {
+		falling = false;
 		if (col.gameObject.layer == 9) {
-			Debug.Log(col.transform.name);
-			gravityDirection = -col.contacts[0].normal;
+			gravityDirection = Vector3.down;//-col.contacts[0].normal;
 			Physics.gravity = 9.81f* gravityDirection;
-			falling = false;
-			Debug.Log(col.contacts[0].normal);
+			
+			
 		}
 		
 	}

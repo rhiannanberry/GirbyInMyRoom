@@ -27,22 +27,14 @@ public class CameraMain : MonoBehaviour {
 	void Update () {
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
-		if (Input.GetKeyDown(KeyCode.E) && Interactable.inRange != null) {
-			if (Interactable.inRange is Bug) {
-                if (Interactable.inRange is Kabuto)
-                    ((Kabuto)Interactable.inRange).TriggerInteractable(); // hacky
-                else
-                    ((Bug)Interactable.inRange).TriggerInteractable();
-			} else {
-				Interactable.inRange.TriggerInteractable();
-
-			}
-		}
 
 		Transform xRot = transform.parent;
 		if (!locked || (origCamRot == transform.rotation && origCamPos == transform.position)) {
 			player.Rotate(Vector3.up*1.5f*Input.GetAxis("Mouse X"));
 			xRot.Rotate(Vector3.right*1.5f*Input.GetAxis("Mouse Y"));
+			if (locked) {
+				Debug.Log("Camera is now unlocked");
+			}
 			locked = false;
 		}
 	}
@@ -67,14 +59,13 @@ public class CameraMain : MonoBehaviour {
 		Quaternion startLookRot = transform.rotation;
 
 		float lookRotDistance = Vector3.Distance(endLookRot.eulerAngles.normalized, startLookRot.eulerAngles.normalized);
-		Debug.Log(endLookRot.eulerAngles + " : " + startLookRot.eulerAngles.normalized);
 		float distance = Vector3.Distance(transform.position, newCameraPosition);
 		//float rotDistance = Quaternion.LookRotation
 		
 		SetCameraPositionRotation(newCameraPosition, endLookRot);
 	}
 
-	public void UnlockCamera() {	
+	public void UnlockCamera() {
 		SetCameraPositionRotation(origCamPos, origCamRot);			
 	}
 
