@@ -5,36 +5,45 @@ using UnityEngine.Events;
 
 
 [System.Serializable]
-public class Interaction {
+public class Interaction
+{
 
-	[SerializeField]
-	public Condition conditionObject;
+    [SerializeField]
+    public Condition conditionObject;
 
-	public UnityEvent action;
+    public UnityEvent action;
 
-	public Interaction() {
-		this.conditionObject = null;
-		this.action = null;
-	}
-	public Interaction(Condition condition, UnityEvent action) {
-		this.conditionObject = condition;
-		this.action = action;
-	}
+    public Interaction()
+    {
+        this.conditionObject = null;
+        this.action = null;
+    }
+    public Interaction(Condition condition, UnityEvent action)
+    {
+        this.conditionObject = condition;
+        this.action = action;
+    }
 
     public bool Check()
     {
-        if (conditionObject == null) {
+        if (conditionObject == null)
+        {
             Debug.Log("No condition on interaction");
             return true;
-        } else {
+        }
+        else
+        {
             return conditionObject.ConditionMet;
         }
         ;
     }
 
-	public void React() { 
-		action.Invoke();
-	}
+    public void React()
+    {
+        action.Invoke();
+    }
+
+
 }
 
 [System.Serializable]
