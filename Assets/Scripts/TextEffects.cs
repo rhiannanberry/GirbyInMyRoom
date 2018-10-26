@@ -35,7 +35,19 @@ public class TextEffects : MonoBehaviour {
 		typeSpeed = speed;
 	}
 
-	public void TriggerText(string txt) {
+    public bool StillTyping()
+    {
+        Debug.Log("still typing: " + (textIndexPosition < textLength));
+        return textIndexPosition < textLength;
+    }
+    public void FinishText()
+    {
+        CancelInvoke();
+        tm.text = text;
+        textIndexPosition = textLength;
+    }
+
+    public void TriggerText(string txt) {
 		text = txt;
 		textIndexPosition = 0;
 		tm.text = "";
