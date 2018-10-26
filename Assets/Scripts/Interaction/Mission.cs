@@ -24,7 +24,6 @@ public class Mission : Condition {
 		items = (new List<Transform>(transform.GetComponentsInChildren<Transform>()));
 		items.RemoveAt(0); 
 		itemsCount = items.Count;
-		Debug.Log(itemsCount);
 		startItemsCount = itemsCount;
 	}
 	

@@ -10,14 +10,13 @@ public class Interactable : MonoBehaviour {
 
 	public InteractionManager interactionManager;
 
-	private GameObject bigPanel, rightPanel, leftPanel;
+	protected GameObject bigPanel, rightPanel, leftPanel;
 	private bool triggered = false;
 
-	private Transform ui;
+	protected Transform ui;
 
 	// Use this for initialization
 	public void Start () {
-		Debug.Log("START");
 		if (transform.childCount > 0) {
 			ui = transform.Find("WorldUICanvas");
 			if ( ui != null ) {
@@ -43,19 +42,27 @@ public class Interactable : MonoBehaviour {
 	}
 
 	
-	void OnTriggerEnter(Collider other)
+	protected void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Player")) {
 			Debug.Log("In range!!");
-			inRange = transform.GetComponent<Interactable>();
+			inRange = transform.GetComponent<Bug>();
+			if (inRange == null) {
+				inRange = transform.GetComponent<Interactable>();
+			}
 			if (ui != null)
 				rightPanel.SetActive(true);
-			if (collisionBasedTrigger)
+			
+			if (collisionBasedTrigger) {
 				TriggerInteractable();
+			}
+			
+			
+			
 		}
 	}
 
-	void OnTriggerExit(Collider other)
+	protected void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Player") && inRange == transform.GetComponent<Interactable>()) {
 			if (ui != null)
@@ -115,13 +122,13 @@ public class Interactable : MonoBehaviour {
             }
 		} else {
 			Debug.Log("INTERACTABLE TRIGGERED");
-            
 			interactionManager.CheckEvents();
             //CheckPages();
 			if (ui != null) {
+				bigPanel.SetActive(true);
 				PlayerController.playerController.LockCameraToPoint(bigPanel.transform);
 				rightPanel.SetActive(false);
-				bigPanel.SetActive(true);
+				
 			}
 			triggered = true;
 		}

@@ -37,6 +37,7 @@ public class Collectable : Interactable {
 	}
 
 	private void SetInactive() {
+		Interactable.inRange = null;
 		gameObject.SetActive(false);
 	}
 

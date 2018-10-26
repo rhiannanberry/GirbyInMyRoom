@@ -18,15 +18,16 @@ public class PlayerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
 	}
 
 	public void LockCameraToPoint(Transform point) {
+		Debug.Log("Locking Camera onto " + point.name + " at " + point.position);
 		ball.LockBallPosition(true);
 		cam.LockCameraInFrontOfPoint(point);
 	}
 
 	public void UnlockCamera() {
+		Debug.Log("Camera unlocked");
 		cam.UnlockCamera();
 		ball.LockBallPosition(false);
 	}
