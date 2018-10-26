@@ -95,6 +95,12 @@ public class Interactable : MonoBehaviour {
         return false;
     }
 
+    //Check if 
+    public bool CheckPages()
+    {
+        return GetComponentInChildren<TextEffects>().IsOverflowing();
+    }
+
     public void TriggerInteractable() {
         //idk how this is rly gonna work yet
         if (triggered) {
@@ -107,12 +113,17 @@ public class Interactable : MonoBehaviour {
                 } else
                 {
                     Debug.Log("INTERACTABLE TRIGGERED");
-                    interactionManager.CheckEvents();
+                    if (!CheckPages())
+                    {
+                        interactionManager.CheckEvents();
+                    }
+                    
                 }
             }
 		} else {
-			Debug.Log("INTERACTABLE TRIGGERED: " + gameObject.name);
+			Debug.Log("INTERACTABLE TRIGGERED");
 			interactionManager.CheckEvents();
+            //CheckPages();
 			if (ui != null) {
 				bigPanel.SetActive(true);
 				PlayerController.playerController.LockCameraToPoint(bigPanel.transform);

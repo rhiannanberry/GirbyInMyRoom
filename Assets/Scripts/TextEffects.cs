@@ -43,17 +43,38 @@ public class TextEffects : MonoBehaviour {
     public void FinishText()
     {
         CancelInvoke();
-        tm.text = text;
+        tm.SetText(text);
+        tm.ForceMeshUpdate();
         textIndexPosition = textLength;
+    }
+
+    public bool IsOverflowing() {
+        if (tm.textInfo.pageCount == tm.pageToDisplay) {
+            return false;
+        } else {
+            tm.text = "";
+            text = text.Substring(tm.firstOverflowCharacterIndex, text.Length - tm.firstOverflowCharacterIndex);
+            textIndexPosition = 0;
+            InvokeRepeating("UpdateText", 0f, 1.0f / typeSpeed);
+            return true;
+        }
+        
+    }
+
+    public void NextPage()
+    {
+        tm.pageToDisplay++;
     }
 
     public void TriggerText(string txt) {
 		text = txt;
 		textIndexPosition = 0;
 		tm.text = "";
+        //tm.pageToDisplay = 1;
 		textLength = text.Length;
 		TriggerText();
 	}
+
 	public void TriggerText() {
 		InvokeRepeating("UpdateText", 0f, 1.0f/typeSpeed);
 	}
@@ -68,7 +89,11 @@ public class TextEffects : MonoBehaviour {
 			return;
 		}
 
-		tm.text += text[textIndexPosition];
+        //Debug.Log(tm.textInfo.lineLength);
+        //tm.SetText(text.Substring(0, textIndexPosition));
+        tm.text += text[textIndexPosition];
+        
+        
 
 		textIndexPosition++;
 		if (textIndexPosition == textLength) {
