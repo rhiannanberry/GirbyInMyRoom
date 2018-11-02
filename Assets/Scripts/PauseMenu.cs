@@ -70,8 +70,8 @@ public class PauseMenu : MonoBehaviour
         else if (!menuToggle.isOn && paused)
         {
             StartCoroutine(TransitionIn());
-            
             MenuOff();
+            transform.GetChild(0).GetComponent<MenuSwitch>().Switch(0);
             PauseScene(false);
         }
     }
@@ -97,6 +97,7 @@ public class PauseMenu : MonoBehaviour
                 a.enabled = true;
             }
             Physics.autoSimulation = true;
+            States.paused = false;
         }
         
     }
@@ -104,6 +105,10 @@ public class PauseMenu : MonoBehaviour
 	public IEnumerator TransitionOut() {
 		float alpha = 0.0f;
 		float timeElapsed = 0.0f;
+        foreach(TextMeshProUGUI t in menuText) {
+            Animator anim = t.transform.GetComponent<Animator>();
+            if (anim) anim.enabled = false;
+        }
 
 		while (timeElapsed < transitionOut) {
 			timeElapsed += Time.deltaTime;
@@ -123,11 +128,19 @@ public class PauseMenu : MonoBehaviour
             }
 			yield return null;
 		}
+        foreach(TextMeshProUGUI t in menuText) {
+            Animator anim = t.transform.GetComponent<Animator>();
+            if (anim) anim.enabled = true;
+        }
 	}
 
 	IEnumerator TransitionIn() {
 		float alpha = 1.0f;
 		float timeRemaining = transitionIn;
+        foreach(TextMeshProUGUI t in menuText) {
+            Animator anim = t.transform.GetComponent<Animator>();
+            if (anim) anim.enabled = false;
+        }
 
 		while (timeRemaining > 0 ) {
 			timeRemaining -= Time.deltaTime;
@@ -143,9 +156,23 @@ public class PauseMenu : MonoBehaviour
                 Color clr = t.color;
                 clr.a = alpha;
                 t.color = clr;
+                
             }
 			yield return null;
 		}
+        foreach(TextMeshProUGUI t in menuText) {
+            Color clr = t.color;
+            clr.a = 1.0f;
+            t.color = new Color(1,1,1,1);
+            LayoutElement e = t.transform.GetComponent<LayoutElement>();
+            if (e) e.minHeight = 0.0f;
+            Animator anim = t.transform.GetComponent<Animator>();
+            if (anim) {
+                anim.enabled = true;
+                anim.playbackTime = 0;
+                anim.StartPlayback();
+            }
+        }
         transform.GetChild(0).gameObject.SetActive(false);
 	}
 	

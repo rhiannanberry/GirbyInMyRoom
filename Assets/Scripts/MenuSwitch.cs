@@ -15,10 +15,13 @@ public class MenuSwitch : MonoBehaviour {
 	private Vector2 containerPathVector, containerSourcePosition;
 	private RectTransform rt;
 	private RectTransform currentMenuTransform;
+
+	public int dest;
 	// Use this for initialization
 	void Start () {
 		rt = GetComponent<RectTransform>();
 		currentMenuTransform = main.GetComponent<RectTransform>();
+		dest = 0;
 	}
 	
 	// Update is called once per frame
@@ -46,5 +49,6 @@ public class MenuSwitch : MonoBehaviour {
 		containerSourcePosition = rt.anchoredPosition;
 		StartCoroutine(AnimationUtilities.MoveUI(rt, containerSourcePosition, containerPathVector, menuSwitchCurve, duration, false));
 		currentMenuTransform = this.destination.GetComponent<RectTransform>();
+		dest = destination;
 	}
 }

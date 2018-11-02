@@ -25,7 +25,6 @@ public class LevelLoader : MonoBehaviour {
 		while (timeElapsed < transitionOut) {
 			timeElapsed += Time.deltaTime;
 			alpha = Mathf.Clamp01(timeElapsed/transitionOut);
-			Debug.Log(timeElapsed);
 			Color clr = img.color;
 			clr.a = alpha;
 			img.color = clr;
@@ -34,7 +33,6 @@ public class LevelLoader : MonoBehaviour {
 		AsyncOperation ao = SceneManager.LoadSceneAsync(sceneIndex);
 		while (!ao.isDone) {
 			float progress = Mathf.Clamp01(ao.progress/0.9f);
-			Debug.Log(progress);
 			yield return null;
 		}
 	}
