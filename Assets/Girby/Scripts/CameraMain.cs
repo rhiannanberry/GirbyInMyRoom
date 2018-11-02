@@ -25,13 +25,13 @@ public class CameraMain : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
+		//Cursor.lockState = CursorLockMode.Locked;
+		//Cursor.visible = false;
 
 		Transform xRot = transform.parent;
 		if (!locked || (origCamRot == transform.rotation && origCamPos == transform.position)) {
-			player.Rotate(Vector3.up*1.5f*Input.GetAxis("Mouse X"));
-			xRot.Rotate(Vector3.right*1.5f*Input.GetAxis("Mouse Y"));
+			player.Rotate(Vector3.up*1.5f*Inputs.cameraVelocity.x);
+			xRot.Rotate(Vector3.right*1.5f*Inputs.cameraVelocity.y);
 			if (locked) {
 				Debug.Log("Camera is now unlocked");
 			}

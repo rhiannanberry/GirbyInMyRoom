@@ -8,7 +8,9 @@ public static class Inputs {
 
 	public static bool interact {
 		get { return (!States.paused && _interact); }
-		set { _interact = !States.paused && value; }
+		set { 
+			_interact = !States.paused && value;
+		}
 	}
 
 	public static bool togglePause {
@@ -76,5 +78,6 @@ public static class Inputs {
 	public static void ResetAll() {
 		_interact=_togglePause=_leftClick=_fwd=_bwd=_left=_right=_jump=false;
 		_moveDirection=_mouseVelocity=Vector2.zero;
+		States.ResetAll();
 	}
 }

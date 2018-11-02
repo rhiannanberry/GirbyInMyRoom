@@ -11,7 +11,7 @@ public class Interactable : MonoBehaviour {
 	public InteractionManager interactionManager;
 
 	protected GameObject bigPanel, rightPanel, leftPanel;
-	private bool triggered = false;
+	protected bool triggered = false;
 
 	protected Transform ui;
 

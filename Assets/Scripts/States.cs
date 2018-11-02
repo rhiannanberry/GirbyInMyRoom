@@ -40,4 +40,8 @@ public static class States {
 	public static void TogglePause() {
 		_paused = !_paused;
 	}
+
+	public static void ResetAll() {
+		_paused=_moving=_jumping=_interacting=false;
+	}
 }

@@ -58,16 +58,23 @@ public class HUD : MonoBehaviour {
 		float newInTime = (newDelta.magnitude/delta.magnitude)*inTime;
 
 		Debug.Log("deltaOffset: " + deltaOffset + " newDelta: " + newDelta + " newInTime: " + newInTime);
-		IEnumerator showPanel = AnimationUtilities.MoveUI(missionPanel, newDelta, UISlideIn, newInTime);
-		IEnumerator hidePanel = AnimationUtilities.MoveUI(missionPanel, -delta, UISlideIn, outTime);
+		IEnumerator showPanel = AnimationUtilities.MoveUI(missionPanel, newDelta, UISlideIn, newInTime, true);
+		IEnumerator hidePanel = AnimationUtilities.MoveUI(missionPanel, -delta, UISlideIn, outTime, true);
 		missionPanelCoroutines.Add(showPanel);
+
+		while(States.paused) {
+			yield return null;
+		}
 
 		//show panel
 		yield return StartCoroutine(showPanel);
 		missionPanel.anchoredPosition = missionPanelStartPosition + delta;
-		StartCoroutine(AnimationUtilities.ScaleWobble(missionPanel, new Vector2(-.01f, .02f), UIWobble, holdTime/2));
+		StartCoroutine(AnimationUtilities.ScaleWobble(missionPanel, new Vector2(-.01f, .02f), UIWobble, holdTime/2, true));
 
-		
+		while(States.paused) {
+			yield return null;
+		}
+
 		//hold panel
 		yield return new WaitForSeconds(holdTime);
 

@@ -5,11 +5,14 @@ using UnityEngine;
 public static class AnimationUtilities {
 	public enum CurveType {EaseIn, EaseOut, EaseInOut, Linear};
 
-	public static IEnumerator ScaleWobble(RectTransform rect, Vector2 scaleDelta, AnimationCurve animationCurve, float duration) {
+	public static IEnumerator ScaleWobble(RectTransform rect, Vector2 scaleDelta, AnimationCurve animationCurve, float duration, bool pausable) {
 		Vector2 startScale = rect.localScale;
 		float timeDelta = 1.0f/duration;
 		float currentTime = 0;
 		while (currentTime <= duration) {
+			while(States.paused && pausable) {
+				yield return null;
+			}
 			currentTime += Time.deltaTime;
 			float scaleAmount = animationCurve.Evaluate(timeDelta*currentTime);
 			rect.localScale = startScale + scaleDelta*scaleAmount;
@@ -62,7 +65,7 @@ public static class AnimationUtilities {
 	/*
 		If you want to move UI from a separate position than it actually starts at.
 	 */
-	public static IEnumerator MoveUI(RectTransform rect, Vector2 startPosition, Vector2 delta, AnimationCurve animationCurve, float duration) {
+	public static IEnumerator MoveUI(RectTransform rect, Vector2 startPosition, Vector2 delta, AnimationCurve animationCurve, float duration, bool pausable) {
 		float dist = delta.magnitude;
 		Vector2 dir = delta.normalized;
 		rect.anchoredPosition = startPosition;
@@ -75,6 +78,11 @@ public static class AnimationUtilities {
 		while( currentTime <= duration) {
 			currentTime += Time.deltaTime;
 			currentDist = dist*animationCurve.Evaluate(timeDelta * currentTime);
+
+			while(States.paused && pausable) {
+				yield return null;
+			}
+
 			if (currentDist >= dist) {
 				rect.anchoredPosition = startPos + dist*dir;
 			} else {
@@ -84,7 +92,7 @@ public static class AnimationUtilities {
 		}
 	}
 
-	public static IEnumerator MoveUI(RectTransform rect, Vector2 delta, AnimationCurve animationCurve, float duration) {
+	public static IEnumerator MoveUI(RectTransform rect, Vector2 delta, AnimationCurve animationCurve, float duration, bool pausable) {
 		float dist = delta.magnitude;
 		Vector2 dir = delta.normalized;
 		Vector2 startPos = rect.anchoredPosition;
@@ -95,6 +103,11 @@ public static class AnimationUtilities {
 		while( currentTime <= duration) {
 			currentTime += Time.deltaTime;
 			currentDist = dist*animationCurve.Evaluate(timeDelta * currentTime);
+
+			while(States.paused && pausable) {
+				yield return null;
+			}
+
 			if (currentDist >= dist) {
 				rect.anchoredPosition = startPos + dist*dir;
 			} else {

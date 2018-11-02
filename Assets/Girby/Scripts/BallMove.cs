@@ -21,13 +21,13 @@ public class BallMove : MonoBehaviour {
 	}
 	
 	void Update() {
-		float fwd = Input.GetAxis("Vertical");
-		float strafe = Input.GetAxis("Horizontal");
+		float fwd = Inputs.moveDirection.y;
+		float strafe = Inputs.moveDirection.x;
 
 		Vector3 movement = Camera.main.transform.forward*fwd;
 		movement += Camera.main.transform.right*strafe;
 
-		if (Input.GetKeyDown(KeyCode.Space)) {
+		if (Inputs.jump) {
 			movement = -gravityDirection * jumpSpeed;
 			Physics.gravity = Vector3.down * 9.81f;
 
@@ -45,7 +45,7 @@ public class BallMove : MonoBehaviour {
 
 		positionDummy.position = transform.position;
 		/*
-		if (Input.GetKeyDown(KeyCode.E) && Interactable.inRange != null) {
+		if (Inputs.interact && Interactable.inRange != null) {
 			Interactable.inRange.TriggerInteractable();;
 		}
 		*/

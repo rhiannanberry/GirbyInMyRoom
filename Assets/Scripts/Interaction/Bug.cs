@@ -15,9 +15,8 @@ public class Bug : Interactable {
 	
 	// Update is called once per frame
 	new void Update () {
-		bool interact = Input.GetKeyDown(KeyCode.E);
 
-        if(collisionBasedTrigger || (!collisionBasedTrigger && interact) && (inRange == me)) {
+        if(collisionBasedTrigger || (!collisionBasedTrigger && Inputs.interact) && (inRange == me)) {
             Debug.Log("Triggering a kabuto?");
             ((Bug)inRange).TriggerInteractable();
         }
@@ -27,6 +26,7 @@ public class Bug : Interactable {
 	public new void TriggerInteractable() {
 		//idk how this is rly gonna work yet
 		base.TriggerInteractable();
+		States.interacting = triggered;
 		Debug.Log("BUG TRIGGERED");
 	}
 }

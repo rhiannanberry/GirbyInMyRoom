@@ -16,9 +16,7 @@ public class Kabuto : Bug {
 	
 	// Update is called once per frame
 	new void Update () {
-        bool interact = Input.GetKeyDown(KeyCode.E);
-
-        if(collisionBasedTrigger || (!collisionBasedTrigger && interact) && (inRange != null) && (inRange is Kabuto)) {
+        if(collisionBasedTrigger || (!collisionBasedTrigger && Inputs.interact) && (inRange != null) && (inRange is Kabuto)) {
             Debug.Log("Triggering a kabuto?");
             ((Kabuto)inRange).TriggerInteractable();
         }

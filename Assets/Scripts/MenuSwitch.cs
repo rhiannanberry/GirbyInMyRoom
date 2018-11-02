@@ -44,7 +44,7 @@ public class MenuSwitch : MonoBehaviour {
 		//that we actually intend on moving, so they must go the opposite direction
 		containerPathVector = currentMenuTransform.anchoredPosition - this.destination.GetComponent<RectTransform>().anchoredPosition;
 		containerSourcePosition = rt.anchoredPosition;
-		StartCoroutine(AnimationUtilities.MoveUI(rt, containerSourcePosition, containerPathVector, menuSwitchCurve, duration));
+		StartCoroutine(AnimationUtilities.MoveUI(rt, containerSourcePosition, containerPathVector, menuSwitchCurve, duration, false));
 		currentMenuTransform = this.destination.GetComponent<RectTransform>();
 	}
 }

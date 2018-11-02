@@ -25,8 +25,9 @@ public class InputsEditor : Editor {
 		EditorGUILayout.LabelField("");
 		EditorGUILayout.LabelField("STATES");
 		EditorGUI.indentLevel++;
-		EditorGUILayout.LabelField("Paused ", States.paused ? "true" : "false");
-        //EditorGUILayout.LabelField("Items Count: ", (myTarget.ItemsCount).ToString());
+		EditorGUILayout.LabelField("Paused", States.paused ? "true" : "false");
+        EditorGUILayout.LabelField("Interacting", States.interacting ? "true" : "false");
+		//EditorGUILayout.LabelField("Items Count: ", (myTarget.ItemsCount).ToString());
 
 		EditorGUI.indentLevel--;
 		if (EditorApplication.isPlaying)
