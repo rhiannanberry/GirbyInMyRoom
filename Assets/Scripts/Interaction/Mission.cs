@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 public class Mission : Condition {
-	public Sprite missionIcon;
+	public Sprite missionIcon, bugIcon, achievementIcon;
 
 	private List<Transform> items;
 	private int itemsCount;

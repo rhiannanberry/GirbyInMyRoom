@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Collectable : Interactable {
+
+	public float rotateSpeed = 10.0f;
 	public float periodLength = 1.0f;
 	public Vector3 hoverDelta = new Vector3(0, 0.05f, 0);
 	protected Mission mission;
@@ -33,6 +35,7 @@ public class Collectable : Interactable {
 	void Update () {
 		base.Update();
 		Hover();
+		Spin();
 		
 	}
 
@@ -48,5 +51,9 @@ public class Collectable : Interactable {
 	private void Hover() {
 		float delta = Mathf.Sin(((Time.time+randStart)%periodLength)*timeDelta);
 		transform.position = startPosition + delta*hoverDelta;
+	}
+
+	private void Spin() {
+		transform.Rotate ( Vector3.up * ( rotateSpeed * Time.deltaTime ) );
 	}
 }
