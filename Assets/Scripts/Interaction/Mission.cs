@@ -5,6 +5,7 @@ using System.Linq;
 
 public class Mission : Condition {
 	public Sprite missionIcon, bugIcon, achievementIcon;
+	public string summary, details;
 
 	private List<Transform> items;
 	private int itemsCount;
@@ -25,6 +26,11 @@ public class Mission : Condition {
 		items.RemoveAt(0); 
 		itemsCount = items.Count;
 		startItemsCount = itemsCount;
+		
+		GameObject mList = GameObject.Find("/HUD/MissionsInProgress");
+		GameObject m = (GameObject)Instantiate(Prefabs.missionDetailsPrefab.gameObject, Vector3.zero, Quaternion.identity, mList.transform);
+
+		m.GetComponent<MissionButton>().SetValues(bugIcon, missionIcon,summary,details, GetComponent<Mission>());
 	}
 	
 	// Update is called once per frame
@@ -39,6 +45,9 @@ public class Mission : Condition {
 	}
 
 	public override string ToString() {
-		return (startItemsCount - itemsCount + 1).ToString() + "/" + startItemsCount.ToString();
+		return (startItemsCount - itemsCount).ToString() + "/" + startItemsCount.ToString();
+	}
+	public string ToStringDelay() {
+		return (startItemsCount - itemsCount+1).ToString() + "/" + startItemsCount.ToString();
 	}
 }

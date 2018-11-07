@@ -34,7 +34,7 @@ public class HUD : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (HUDActions.updateMission) {
-			missionItemCount.text = HUDActions.mission.ToString();
+			missionItemCount.text = HUDActions.mission.ToStringDelay();
 			missionSprite.sprite = HUDActions.mission.missionIcon;
 			if (missionPanelCoroutines.Count > 0) {
 				foreach (IEnumerator cor in missionPanelCoroutines) {
@@ -47,6 +47,7 @@ public class HUD : MonoBehaviour {
 			missionPanelCoroutines.Add(mainCor);
 			//StartCoroutine(AnimationUtilities.ScaleWobble(missionPanel, new Vector2(0.01f, 0.01f), 1.5f, 4));
 
+			
 			HUDActions.updateMission = false;
 		}
 	}

@@ -31,8 +31,9 @@ public class InputController : MonoBehaviour {
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
 		} else {
-			Cursor.lockState = CursorLockMode.Locked;
-			Cursor.visible = false;
+			//Cursor.lockState = CursorLockMode.Locked;
+			Cursor.lockState = CursorLockMode.None;
+			//Cursor.visible = false;
 		}
 	}
 }

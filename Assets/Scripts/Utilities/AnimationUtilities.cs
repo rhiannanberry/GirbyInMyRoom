@@ -20,6 +20,36 @@ public static class AnimationUtilities {
 		}
 	}
 
+	public static IEnumerator ScaleChangeTo(RectTransform rect, Vector2 newScale, AnimationCurve animationCurve, float duration, bool pausable) {
+		Vector2 startScale = rect.localScale;
+		Vector2 scaleDelta = newScale - startScale;
+		float timeDelta = 1.0f/duration;
+		float currentTime = 0;
+		while (currentTime <= duration) {
+			while(States.paused && pausable) {
+				yield return null;
+			}
+			currentTime += Time.deltaTime;
+			float scaleAmount = animationCurve.Evaluate(timeDelta*currentTime);
+			rect.localScale = startScale + scaleDelta*scaleAmount;
+			yield return new WaitForFixedUpdate();
+		}
+	}
+
+
+	public static IEnumerator Animate(AnimationCurve animationCurve, float percentComplete, float duration, bool pausable) {
+		float currentTime = percentComplete*duration;
+		float timeDelta = 1.0f/duration;
+		while (currentTime <= duration) {
+			while(States.paused && pausable) {
+				yield return null;
+			}
+			currentTime += Time.deltaTime;
+			yield return animationCurve.Evaluate(timeDelta*currentTime);
+		}
+		yield return null;
+	}
+
 	public static IEnumerator MoveUITo(RectTransform rect, Vector2 startPosition, Vector2 endPosition, float duration, CurveType type) {
 		Vector2 delta = endPosition - startPosition;
 		float dist = delta.magnitude;
