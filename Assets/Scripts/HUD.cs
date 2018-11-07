@@ -18,7 +18,7 @@ public class HUD : MonoBehaviour {
 
 	public AnimationCurve UIWobble, UISlideIn;
 
-	public RectTransform missionPanel;
+	public RectTransform missionPanel, missionsMenu;
 	TextMeshProUGUI missionItemCount;
 	Vector2 missionPanelStartPosition;
 	Image missionSprite;
@@ -49,6 +49,9 @@ public class HUD : MonoBehaviour {
 
 			
 			HUDActions.updateMission = false;
+		}
+		if (missionsMenu.gameObject.activeSelf != States.missionOpen) {
+			missionsMenu.gameObject.SetActive(States.missionOpen);
 		}
 	}
 

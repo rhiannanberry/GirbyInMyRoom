@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Inputs {
-	private static bool _interact, _togglePause, _leftClick, _fwd, _bwd, _left, _right, _jump;
+	private static bool _interact, _togglePause, _leftClick, _fwd, _bwd, _left, _right, _jump, _toggleMission;
 	private static Vector2 _moveDirection, _mouseVelocity;
 
 	public static bool interact {
@@ -18,6 +18,14 @@ public static class Inputs {
 		set {//TODO
 			_togglePause = value;
 			if (_togglePause) States.TogglePause();
+		}
+	}
+
+	public static bool toggleMission {
+		get { return _toggleMission; }
+		set {//TODO
+			_toggleMission = value;
+			if (_toggleMission) States.ToggleMissions();
 		}
 	}
 

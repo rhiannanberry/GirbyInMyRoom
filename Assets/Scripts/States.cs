@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class States {
-	private static bool _paused, _moving, _jumping, _interacting;
+	private static bool _paused, _moving, _jumping, _interacting, _missionOpen;
 
 	public static bool paused {
 		get { return _paused; }
@@ -37,8 +37,21 @@ public static class States {
 		}
 	}
 
+	public static bool missionOpen {
+		get { return _missionOpen; }
+		set { 
+			if (!_paused) {
+				_missionOpen = value;
+			}
+		}
+	}
+
 	public static void TogglePause() {
 		_paused = !_paused;
+	}
+
+	public static void ToggleMissions() {
+		_missionOpen = !_missionOpen;
 	}
 
 	public static void ResetAll() {
