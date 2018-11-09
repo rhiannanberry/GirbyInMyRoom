@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 
 public class Mission : Condition {
+	public GameObject missionDetailsPrefab;
 	public Sprite missionIcon, bugIcon, achievementIcon;
 	public string summary, details;
 
@@ -26,10 +27,13 @@ public class Mission : Condition {
 		items.RemoveAt(0); 
 		itemsCount = items.Count;
 		startItemsCount = itemsCount;
+		missionDetailsPrefab = Prefabs.missionDetailsPrefab.gameObject;
+		Debug.Log(missionDetailsPrefab);
 		
-		GameObject mList = GameObject.Find("/HUD/MissionsInProgress");
-		GameObject m = (GameObject)Instantiate(Prefabs.missionDetailsPrefab.gameObject, Vector3.zero, Quaternion.identity, mList.transform);
-
+		GameObject mList = GetComponentInParent<MissionsContainer>().missionsUIContainer;
+		mList.SetActive(true);
+		GameObject m = (GameObject)Instantiate(missionDetailsPrefab, Vector3.zero, Quaternion.identity, mList.transform);
+		mList.SetActive(false);
 		m.GetComponent<MissionButton>().SetValues(bugIcon, missionIcon,summary,details, GetComponent<Mission>());
 	}
 	

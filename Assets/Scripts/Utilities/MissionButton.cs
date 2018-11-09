@@ -35,6 +35,11 @@ public class MissionButton : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
 	// Update is called once per frame
 	void Update () {
 		summaryTMP.text = mission.ToString() + " " + summaryText;
+		if (!States.missionOpen) {
+			if (hover != null) {
+				StopCoroutine(hover);
+			}
+		}
 	}
 
 	public void OnPointerEnter(PointerEventData eventData) {//cancel whatever down scale coroutine is occuring, start upscale corouting
