@@ -6,17 +6,17 @@ using UnityEngine.UI;
 public class AudioController : MonoBehaviour {
 
 	public Slider master,music,sfx;
+	private AudioSource asMusic;
 
-	// Use this for initialization
-	void Start () {
+	void Start() {
+		asMusic = GetComponent<AudioSource>();
+	}
+
+	public void Initialize() {
 		UpdateSlider();
-		GetComponent<AudioSource>().volume = master.value * music.value;
+		asMusic.volume = master.value * music.value;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 
 	public void UpdateMaster() {
 		SaveLoad.instance.masterVolume = master.value;
@@ -36,8 +36,12 @@ public class AudioController : MonoBehaviour {
 	}
 
 	public void UpdateSlider() {
-		master.value = Mathf.Clamp01(SaveLoad.instance.masterVolume);
-		music.value = Mathf.Clamp01(SaveLoad.instance.musicVolume);
-		sfx.value = Mathf.Clamp01(SaveLoad.instance.sfxVolume);
+		if(SaveLoad.instance != null ) {
+			master.value = Mathf.Clamp01(SaveLoad.instance.masterVolume);
+			music.value = Mathf.Clamp01(SaveLoad.instance.musicVolume);
+			sfx.value = Mathf.Clamp01(SaveLoad.instance.sfxVolume);
+		}
 	}
+
+	
 }

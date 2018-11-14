@@ -31,9 +31,9 @@ public class Mission : Condition {
 		Debug.Log(missionDetailsPrefab);
 		
 		GameObject mList = GetComponentInParent<MissionsContainer>().missionsUIContainer;
-		mList.SetActive(true);
+		//mList.SetActive(true);
 		GameObject m = (GameObject)Instantiate(missionDetailsPrefab, Vector3.zero, Quaternion.identity, mList.transform);
-		mList.SetActive(false);
+		//mList.SetActive(false);
 		m.GetComponent<MissionButton>().SetValues(bugIcon, missionIcon,summary,details, GetComponent<Mission>());
 	}
 	

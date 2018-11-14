@@ -33,9 +33,18 @@ public class followcam : MonoBehaviour {
 		}
 		
 		if(!locked) {//TODO: change this to use Inputs later
-			camTurnAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse X")*rotationSpeed, Vector3.up);
-			camPitchAngle = Quaternion.AngleAxis(Input.GetAxis("Mouse Y")*rotationSpeed,transform.right);
+			camTurnAngle = Quaternion.AngleAxis(Inputs.mouseVelocity.x*rotationSpeed, Vector3.up);
+			int nearPole = NearVertical();
+			if ((nearPole > 0 && Inputs.mouseVelocity.y <= 0 ) || (nearPole < 0 && Inputs.mouseVelocity.y >= 0) || (nearPole == 0)) {
+				camPitchAngle = Quaternion.AngleAxis(Inputs.mouseVelocity.y*rotationSpeed,transform.right);
+			} else {
+				camPitchAngle = Quaternion.identity;
+			}
+			
+			
+			//Debug.Log("before:" + offset);
 			offset = camPitchAngle * camTurnAngle * offset ;
+			//Debug.Log("after:" + offset);
 			Follow(offset,_target,followSmoothFactor);
 		} else {
 			Follow(offset,target,lockSmoothFactor);
@@ -52,6 +61,13 @@ public class followcam : MonoBehaviour {
 
 	private bool OffsetReset(Vector3 target, Vector3 originalOffset, float distanceFuzz) {
 		return Mathf.Abs(Vector3.Distance(transform.position - target, originalOffset)) < distanceFuzz;
+	}
+
+	private int NearVertical() {
+		float angle = Vector3.Angle(_target.position-transform.position, Vector3.up);
+		if (angle<5) return -1;
+		if (angle>175) return 1;
+		return 0;
 	}
 
 	public void LockCameraInFrontOfPoint(Transform point) {

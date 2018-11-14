@@ -6,49 +6,39 @@ public class BallMove : MonoBehaviour {
 
 	
 	Rigidbody rb;
-	public Transform positionDummy;
-	public float speed = 8f;
 
-	public float jumpSpeed = 20f;
-	public float stopDrag = 4f;
+	public bool useTorque = true;
+	public float movePower = 5;
+	public float jumpPower = 2;
+	public float maxAngularVelocity = 25;
 
 	private Vector3 gravityDirection = Vector3.down;
+	private const float groundRayLength = 1f;
 	private bool falling = true;
 
 	// Use this for initialization
 	void Start () {
 		rb = GetComponent<Rigidbody>();
+		rb.maxAngularVelocity = maxAngularVelocity;
 	}
-	
-	void Update() {
-		float fwd = Inputs.moveDirection.y;
-		float strafe = Inputs.moveDirection.x;
 
-		Vector3 movement = Camera.main.transform.forward*fwd;
-		movement += Camera.main.transform.right*strafe;
-
-		if (Inputs.jump) {
-			movement = -gravityDirection * jumpSpeed;
-			Physics.gravity = Vector3.down * 9.81f;
-
-			rb.drag = 0;
-			rb.AddForce(movement*speed);
-			falling = true;
-		} else if (!falling) {
-			rb.drag = (movement == Vector3.zero ) ? stopDrag : 0;
-			rb.AddForce(movement*speed);
+	public void Move(Vector3 moveDirection, bool jump) {
+		Vector3 force = Vector3.zero;
+		if (useTorque) { // If using torque to rotate the ball...
+			rb.AddTorque(new Vector3(moveDirection.z, 0, -moveDirection.x)*movePower); //add torque around the axis defined by the move direction.
+		} else {
+			force = moveDirection*movePower;
+			//rb.AddForce(moveDirection*movePower); //Otherwise add force in the move direction.
 		}
 
-		if (rb.velocity.magnitude >= 2.5 && !falling) {
-			rb.velocity = rb.velocity.normalized * 2.5f;
+		if (Physics.Raycast(transform.position, -Vector3.up, groundRayLength) && jump)
+		{
+			// ... add force in upwards.
+			force = Vector3.zero;
+			rb.MovePosition(transform.position + moveDirection * Time.deltaTime);
+			rb.AddForce(Vector3.up*jumpPower, ForceMode.Impulse);
 		}
-
-		//positionDummy.position = transform.position;
-		/*
-		if (Inputs.interact && Interactable.inRange != null) {
-			Interactable.inRange.TriggerInteractable();;
-		}
-		*/
+		rb.AddForce(force); 
 	}
 
 	public void LockBallPosition(bool toLock) {

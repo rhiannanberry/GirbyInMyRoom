@@ -16,6 +16,12 @@ public class PlayerController : MonoBehaviour {
 		cam = GetComponentInChildren<followcam>();
 		ball = GetComponentInChildren<BallMove>();
 	}
+
+	void FixedUpdate() {
+		Vector3 camForward = Vector3.Scale(cam.transform.forward, new Vector3(1,0,1)).normalized;
+        Vector3 move = (Inputs.moveDirection.y*camForward + Inputs.moveDirection.x*cam.transform.right).normalized;
+		ball.Move(move, Inputs.jump);
+	}
 	
 	// Update is called once per frame
 	void LateUpdate () {

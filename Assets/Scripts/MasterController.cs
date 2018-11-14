@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MasterController : MonoBehaviour {
+	AudioController ac;
 
 	// Use this for initialization
 	void Start () {
@@ -11,7 +12,9 @@ public class MasterController : MonoBehaviour {
 			
 			SaveLoad.instance = new SaveData();
 		}
-		Debug.Log(SaveLoad.instance.musicVolume);
+		ac = GetComponent<AudioController>();
+
+		ac.Initialize();
 
 	}
 	
