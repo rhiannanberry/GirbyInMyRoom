@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Roomba : Bug {
 
+	public Transform hoverEndLocation;
+	public float speed = 5.0f;
+	private Vector3 startLocation;
+	private bool hoverActivated = false, up = true;
+
     new void Start () {
 		base.Start();
 		base.collisionBasedTrigger = false;
+		startLocation = transform.position;
 	}
 	
 	// Update is called once per frame
@@ -15,6 +21,21 @@ public class Roomba : Bug {
             Debug.Log("Triggering a Roomba?");
             ((Roomba)inRange).TriggerInteractable();
         }
+		if(hoverActivated && !States.interacting) {
+			if(up) {
+				if (transform.position == hoverEndLocation.position) {
+					up = false;
+				} else {
+					GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(transform.position, hoverEndLocation.position, speed*Time.deltaTime));
+				}
+			} else {
+				if (transform.position == startLocation) {
+					up = true;
+				} else {
+					GetComponent<Rigidbody>().MovePosition(Vector3.MoveTowards(transform.position, startLocation, speed*Time.deltaTime));
+				}
+			}
+		}
 		base.Update();
 	}
 
@@ -40,5 +61,9 @@ public class Roomba : Bug {
 	void OnTriggerExit(Collider other)
 	{
 		base.OnTriggerExit(other);
+	}
+
+	public void ActivateRoombaHover() {
+		hoverActivated = true;
 	}
 }

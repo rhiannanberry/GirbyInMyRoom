@@ -31,10 +31,13 @@ public class InputController : MonoBehaviour {
 		if (States.paused) {
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
-		} else {
-			//Cursor.lockState = CursorLockMode.Locked;
+		} else if (States.missionOpen) {
 			Cursor.lockState = CursorLockMode.None;
-			//Cursor.visible = false;
+			Cursor.visible = true;
+		} else {
+			Cursor.lockState = CursorLockMode.Locked;
+			//Cursor.lockState = CursorLockMode.None;
+			Cursor.visible = false;
 		}
 	}
 }

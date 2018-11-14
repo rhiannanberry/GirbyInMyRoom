@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bug : Interactable {
 	// Use this for initialization
+	private AudioSource audio;
 	private bool inDialogue = false;
 	private Interactable me;
 
@@ -11,13 +12,13 @@ public class Bug : Interactable {
 		base.Start();
 		base.collisionBasedTrigger = false;
 		me = transform.GetComponent<Interactable>();
+		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
 	new void Update () {
 
         if(collisionBasedTrigger || (!collisionBasedTrigger && Inputs.interact) && (inRange == me)) {
-            Debug.Log("Triggering a kabuto?");
             ((Bug)inRange).TriggerInteractable();
         }
 		base.Update();
@@ -27,6 +28,13 @@ public class Bug : Interactable {
 		//idk how this is rly gonna work yet
 		base.TriggerInteractable();
 		States.interacting = triggered;
-		Debug.Log("BUG TRIGGERED");
+		PlayDialogSound();
+	}
+
+	private void PlayDialogSound() {
+		if(audio != null && audio.clip != null) {
+			audio.volume = SaveLoad.instance.sfxVolume*SaveLoad.instance.masterVolume;
+			audio.Play();
+		}
 	}
 }
