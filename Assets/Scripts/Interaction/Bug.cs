@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bug : Interactable {
 	// Use this for initialization
-	private AudioSource audio;
 	private bool inDialogue = false;
 	private Interactable me;
 
@@ -12,7 +11,6 @@ public class Bug : Interactable {
 		base.Start();
 		base.collisionBasedTrigger = false;
 		me = transform.GetComponent<Interactable>();
-		audio = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -28,13 +26,6 @@ public class Bug : Interactable {
 		//idk how this is rly gonna work yet
 		base.TriggerInteractable();
 		States.interacting = triggered;
-		PlayDialogSound();
-	}
-
-	private void PlayDialogSound() {
-		if(audio != null && audio.clip != null) {
-			audio.volume = SaveLoad.instance.sfxVolume*SaveLoad.instance.masterVolume;
-			audio.Play();
-		}
+		
 	}
 }

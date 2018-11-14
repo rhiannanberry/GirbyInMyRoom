@@ -13,10 +13,13 @@ public class Interactable : MonoBehaviour {
 	protected GameObject bigPanel, rightPanel, leftPanel;
 	protected bool triggered = false;
 
+	private AudioSource audio;
+
 	protected Transform ui;
 
 	// Use this for initialization
 	public void Start () {
+		audio = GetComponent<AudioSource>();
 		if (transform.childCount > 0) {
 			ui = transform.Find("WorldUICanvas");
 			if ( ui != null ) {
@@ -131,6 +134,15 @@ public class Interactable : MonoBehaviour {
 				
 			}
 			triggered = true;
+			PlayDialogSound();
+		}
+	}
+
+	private void PlayDialogSound() {
+		if(audio != null && audio.clip != null) {
+			audio.volume = SaveLoad.instance.sfxVolume*SaveLoad.instance.masterVolume;
+			audio.Play();
+			Debug.LogWarning("FFFFF");
 		}
 	}
 }

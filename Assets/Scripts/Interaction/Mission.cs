@@ -28,7 +28,6 @@ public class Mission : Condition {
 		itemsCount = items.Count;
 		startItemsCount = itemsCount;
 		missionDetailsPrefab = Prefabs.missionDetailsPrefab.gameObject;
-		Debug.Log(missionDetailsPrefab);
 		
 		GameObject mList = GetComponentInParent<MissionsContainer>().missionsUIContainer;
 		//mList.SetActive(true);
