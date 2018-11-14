@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
-	CameraMain cam;
+	public followcam cam;
 
 	public static PlayerController playerController;
 
@@ -12,12 +12,14 @@ public class PlayerController : MonoBehaviour {
 
 	void Start () {
 		playerController = GetComponent<PlayerController>();
-		cam = GetComponentInChildren<CameraMain>();
+		//cam = GetComponentInChildren<CameraMain>();
+		cam = GetComponentInChildren<followcam>();
 		ball = GetComponentInChildren<BallMove>();
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
+		ball.LockBallPosition(cam.IsLocked());
 	}
 
 	public void LockCameraToPoint(Transform point) {
@@ -29,7 +31,7 @@ public class PlayerController : MonoBehaviour {
 	public void UnlockCamera() {
 		Debug.Log("Camera unlocked");
 		cam.UnlockCamera();
-		ball.LockBallPosition(false);
+		//ball.LockBallPosition(false);
 	}
 
 	public void LockDialogCamera(Transform point) {

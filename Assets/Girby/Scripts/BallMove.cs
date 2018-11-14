@@ -43,7 +43,7 @@ public class BallMove : MonoBehaviour {
 			rb.velocity = rb.velocity.normalized * 2.5f;
 		}
 
-		positionDummy.position = transform.position;
+		//positionDummy.position = transform.position;
 		/*
 		if (Inputs.interact && Interactable.inRange != null) {
 			Interactable.inRange.TriggerInteractable();;

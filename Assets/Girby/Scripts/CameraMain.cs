@@ -5,9 +5,6 @@ using UnityEngine;
 public class CameraMain : MonoBehaviour {
 
 	public Transform player;
-	public Transform room;
-
-	public Transform girbyModel;
 
 	public float cameraLockTime = 0.3f;
 
