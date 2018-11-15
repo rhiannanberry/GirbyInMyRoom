@@ -54,6 +54,6 @@ public class Collectable : Interactable {
 	}
 
 	private void Spin() {
-		transform.Rotate ( Vector3.up * ( rotateSpeed * Time.deltaTime ) );
+		transform.Rotate ( Vector3.up * ( rotateSpeed * Time.deltaTime ), UnityEngine.Space.World );
 	}
 }
