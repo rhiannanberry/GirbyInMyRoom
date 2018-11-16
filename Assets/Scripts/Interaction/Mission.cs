@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.UI;
 
 public class Mission : Condition {
 	public GameObject missionDetailsPrefab;
@@ -30,10 +31,34 @@ public class Mission : Condition {
 		missionDetailsPrefab = Prefabs.missionDetailsPrefab.gameObject;
 		
 		GameObject mList = GetComponentInParent<MissionsContainer>().missionsUIContainer;
+		GridLayoutGroup listGroup = mList.GetComponent<GridLayoutGroup>();
+		int childCount = mList.transform.childCount;
+		
+		GameObject m;
+		if (childCount == 4 || childCount == 9) {
+			m = (GameObject)Instantiate(Prefabs.missionDetailsRightPrefab.gameObject, Vector3.zero, Quaternion.identity, mList.transform);
+
+		} else if (childCount > 10) {
+			if (childCount == 14) {
+				m = (GameObject)Instantiate(Prefabs.missionDetailsBottomRightPrefab.gameObject, Vector3.zero, Quaternion.identity, mList.transform);
+			} else {
+				m = (GameObject)Instantiate(Prefabs.missionDetailsBottomPrefab.gameObject, Vector3.zero, Quaternion.identity, mList.transform);
+			}
+		} else {
+			m = (GameObject)Instantiate(missionDetailsPrefab, Vector3.zero, Quaternion.identity, mList.transform);
+		}
 		//mList.SetActive(true);
-		GameObject m = (GameObject)Instantiate(missionDetailsPrefab, Vector3.zero, Quaternion.identity, mList.transform);
+		 
 		//mList.SetActive(false);
 		m.GetComponent<MissionButton>().SetValues(bugIcon, missionIcon,summary,details, GetComponent<Mission>());
+	}
+
+	public void UpdateMissionDetails(string details) {
+		this.details = details;
+	}
+
+	public void AppendMissionDetails(string details) {
+		this.details += details;
 	}
 	
 	// Update is called once per frame
@@ -52,5 +77,5 @@ public class Mission : Condition {
 	}
 	public string ToStringDelay() {
 		return (startItemsCount - itemsCount+1).ToString() + "/" + startItemsCount.ToString();
-	}
+ 	}
 }

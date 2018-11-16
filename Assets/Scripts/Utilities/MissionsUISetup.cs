@@ -14,7 +14,10 @@ public class MissionsUISetup : MonoBehaviour {
 	void Update () {
 		int numChildren = transform.childCount;
 		for (int i=numChildren; i > 0; i--) {
-			transform.GetChild(numChildren-i).GetComponent<Canvas>().sortingOrder = numChildren+5;
+			transform.GetChild(numChildren-i).GetComponent<Canvas>().sortingOrder = i+5;
+			if (transform.GetChild(numChildren-i).GetComponent<MissionButton>().hovering) {
+				transform.GetChild(numChildren-i).GetComponent<Canvas>().sortingOrder = numChildren+6;
+			}
 		}
 	}
 }

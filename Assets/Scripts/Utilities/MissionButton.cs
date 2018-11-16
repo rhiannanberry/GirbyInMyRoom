@@ -17,24 +17,38 @@ public class MissionButton : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
 	public AnimationCurve hoverScaleCurve;
 
 	private RectTransform hoverTransform;
-	private IEnumerator hover;
+
+	[HideInInspector]
+	public IEnumerator hover;
+
+	[HideInInspector]
+	public bool hovering = false;
 
 	private TextMeshProUGUI summaryTMP, detailsTMP;
+
+	private Vector2 startSize, hoverSize;
 
 	// Use this for initialization
 	void Start () {
 		//SetValues(null, null, "", "");
 		hoverTransform = transform.GetChild(0).GetComponent<RectTransform>();
-		hoverTransform.sizeDelta = new Vector2(100,100);
+
+		startSize = GetComponentInParent<GridLayoutGroup>().cellSize;
+		hoverSize = transform.GetChild(0).GetChild(0).GetComponent<RectTransform>().sizeDelta;
+
+		hoverTransform.sizeDelta = startSize;
+
 		summaryTMP = transform.Find("Container/Information/Summary/Description/Text").GetComponent<TextMeshProUGUI>();
 		Debug.Log(summaryTMP);
 		detailsTMP = transform.Find("Container/Information/Details/Text").GetComponent<TextMeshProUGUI>();
+		
 
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		summaryTMP.text = mission.ToString() + " " + summaryText;
+		detailsTMP.text = mission.details;
 		if (!States.missionOpen) {
 			if (hover != null) {
 				StopCoroutine(hover);
@@ -45,23 +59,27 @@ public class MissionButton : MonoBehaviour, IPointerEnterHandler,IPointerExitHan
 	public void OnPointerEnter(PointerEventData eventData) {//cancel whatever down scale coroutine is occuring, start upscale corouting
 		if (hover != null) {
 			StopCoroutine(hover);
+			hover = null;
 		}
+		hovering = true;
 		HoverOpen();
     }
 	public void OnPointerExit(PointerEventData eventData) {
 		if (hover != null) {
 			StopCoroutine(hover);
+			hover = null;
 		}
+		hovering = false;
 		HoverClose();
     }
 
 	private void HoverOpen() {
-		hover = ScaleRectTransform(new Vector2(100,100), new Vector2(350,400));
+		hover = ScaleRectTransform(startSize, hoverSize);
 		StartCoroutine(hover);
 	}
 
 	private void HoverClose() {
-		hover = ScaleRectTransform(new Vector2(350,400), new Vector2(100,100));
+		hover = ScaleRectTransform(hoverSize,startSize);
 		StartCoroutine(hover);
 	}
 
