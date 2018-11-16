@@ -39,12 +39,12 @@ public class Collectable : Interactable {
 		
 	}
 
-	private void SetInactive() {
+	public void SetInactive() {
 		Interactable.inRange = null;
 		gameObject.SetActive(false);
 	}
 
-	private void UpdateUI() {
+	public void UpdateUI() {
 		HUDActions.UpdateMission(mission);
 	}
 
