@@ -13,8 +13,10 @@ public class InputController : MonoBehaviour {
 	void Update () {
 		if (Application.isEditor) {
 			Inputs.togglePause = Input.GetKeyDown(KeyCode.Q);
+			Inputs.toggleMission = Input.GetKeyDown(KeyCode.Z);
 		} else {
 			Inputs.togglePause = Input.GetKeyDown(KeyCode.Escape);
+			Inputs.toggleMission = Input.GetKeyDown(KeyCode.Q);
 		}
 		
 		Inputs.interact = Input.GetKeyDown(KeyCode.E);
@@ -26,7 +28,7 @@ public class InputController : MonoBehaviour {
 		Inputs.left = Inputs.moveDirection.x < 0;
 		Inputs.right = Inputs.moveDirection.x > 0;
 		Inputs.mouseVelocity = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-		Inputs.toggleMission = Input.GetKeyDown(KeyCode.Z);
+		
 	
 		if (States.paused) {
 			Cursor.visible = true;
