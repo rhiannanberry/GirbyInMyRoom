@@ -11,6 +11,7 @@ public class Interaction
     [SerializeField]
     public Condition conditionObject;
 
+    [SerializeField]
     public UnityEvent action;
 
     public Interaction()
@@ -48,7 +49,9 @@ public class Interaction
 
 [System.Serializable]
 public class InteractionNonSequenced : Interaction {
+    [SerializeField]
 	public bool repeat = true;
+    [SerializeField]
 	private int timesRepeated = 0;
 
 	public InteractionNonSequenced(Condition condition, UnityEvent action) {

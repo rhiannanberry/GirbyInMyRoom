@@ -9,7 +9,9 @@ public class InteractionManager {
 
 	[SerializeField]
 	private int sequenceLocation = 0;
+	[SerializeField]
 	public List<Interaction> sequentialEvents;
+	[SerializeField]
 	public List<InteractionNonSequenced> events;
 
 	public InteractionManager() {

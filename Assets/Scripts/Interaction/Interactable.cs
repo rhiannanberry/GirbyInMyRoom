@@ -8,6 +8,7 @@ public class Interactable : MonoBehaviour {
 
 	protected bool collisionBasedTrigger = true;
 
+	[SerializeField]
 	public InteractionManager interactionManager;
 
 	protected GameObject bigPanel, rightPanel, leftPanel;
